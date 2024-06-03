@@ -2,17 +2,19 @@ using Tools;
 using NUnit.Framework.Internal;
 using Core.Data;
 using Core.Pages.AvaTrade.Registration;
+using Core.Pages;
 
 namespace Tests
 {
     public class RegistrationTests : BaseTest
     {
         private readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
+        private readonly ATGuestPage guestPage = new ATGuestPage();
 
         [Test, TestCaseSource(nameof(GetTestData))]
         public void RegistrationTest(Person personData)
         {
-            avaTradeHomePage.InitiateAccountRegistration();
+            guestPage.InitiateAccountRegistration();
 
             initialSignUpPage.WaitForPageLoading();
             

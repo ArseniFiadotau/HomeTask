@@ -15,7 +15,6 @@ namespace Core.Pages.AvaTrade.Registration
         public override void WaitForPageLoading()
         {
             WaitForVisible(progressBar, WaitTime.ThirtySec);
-            WaitForVisible(PhoneTextBoxBy, WaitTime.ThirtySec);
             WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
         }
 
