@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Appium;
 using Tools;
 using OpenQA.Selenium;
+using System.Runtime.CompilerServices;
 
 namespace Core
 {
@@ -15,13 +16,15 @@ namespace Core
         {
             if (_driver == null)
             {
-                _driver = new ThreadLocal<AppiumDriver<AndroidElement>>();
-                _driver.Value = InitDriver();
+                _driver = new ThreadLocal<AppiumDriver<AndroidElement>>
+                {
+                    Value = InitDriver()
+                };
             }
 
             return _driver.Value;
         }
-
+        
         private static AndroidDriver<AndroidElement> InitDriver()
         {
             var driverOptions = new AppiumOptions();

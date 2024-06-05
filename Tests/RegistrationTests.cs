@@ -1,8 +1,8 @@
 using Tools;
 using NUnit.Framework.Internal;
-using Core.Data;
 using Core.Pages.AvaTrade.Registration;
 using Core.Pages;
+using static Core.Data.RegistrationEnums;
 
 namespace Tests
 {
@@ -23,7 +23,7 @@ namespace Tests
             initialSignUpPage.FulfillInitialInformation(personData.Country, personData.Email, personData.Password);
         }
 
-        public static IEnumerable<Person> GetTestData()
+        private static IEnumerable<Person> GetTestData()
         {
             yield return new Person
             {
