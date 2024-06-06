@@ -1,0 +1,22 @@
+1. On the first person details screen (with first/last names, birth date and phone) there is no progress bar on top of the page for France, but there is one for Afghanistan.
+Also on this, step preselected country codes differ for each country.
+
+2. On second person details screen progress bar values differ. France has 35%, Afghanistan has 45%. Percentage difference persists till the end of registration process.
+Also pre-selected countries and currencies are different: USD for Afghanistan and Euro for France
+
+3. Then next step with questions appears:
+ - What is the estimated value of your savings & investments?
+ - What level of financial risk are you comfortable with?
+  After proceeding, Afghanistan user moves to "Terms and Conditions" page, but France user goes to "Trading Experience & Knowledge" page and there is a trading tutorial available for the user.
+ 
+3.1. When clicking "yes", there are two questions:
+ - What was the extent of your trading experience over the last year?
+ - What was the estimated value of those trades?
+ 
+     When the user clicks "no" - popup with video is showing, then user can switch to "yes" option and questions above in this 3.1 article still need to be filled.
+	  
+3.2. Then France user has to fulfill two "Few More Questions" page. After these questions, the user finally moves to the "Terms and Conditions" page, mentioned in step 3 of this document.
+ 
+4. Then there is an "Almost done" dialog with different buttons for Afghanistan and France users: 
+- Afghanistan user has the 'Fund Your Account' button on it and then deposit dialog appears.
+- France user has the 'Verify your account' button, then verification dialog appears.
