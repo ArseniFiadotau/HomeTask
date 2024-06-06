@@ -9,7 +9,6 @@ using Tools;
 
 namespace Tests
 {
-    [SuppressMessage("Structure", "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method", Justification = "Disposing happens in Driver.Close() method")]
     public class BaseTest
     {
         public readonly AndroidHomePage androidHomePage = new AndroidHomePage();
@@ -35,7 +34,7 @@ namespace Tests
             }
 
             Driver.TerminateApp(Config.AvaTradeAppId);
-            Driver.Close();
+            Driver.Quit();
         }
     }
 }

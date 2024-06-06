@@ -1,14 +1,12 @@
 ﻿using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium;
-using Tools;
-using OpenQA.Selenium;
-using System.Runtime.CompilerServices;
 
 namespace Core
 {
     public class AndroidDriver
     {
-        private static ThreadLocal<AppiumDriver<AndroidElement>>? _driver;
+        private static AppiumDriver<AndroidElement>? _driver;
+        private static object syncRoot = new Object();
 
         private AndroidDriver() { }
 
@@ -16,11 +14,16 @@ namespace Core
         {
             if (_driver == null)
             {
-                _driver = new ThreadLocal<AppiumDriver<AndroidElement>>();
-                _driver.Value = InitDriver();
+                lock (syncRoot)
+                {
+                    if (_driver == null)
+                    {
+                        _driver = InitDriver();
+                    }
+                } 
             }
 
-            return _driver.Value;
+            return _driver;
         }
         
         private static AndroidDriver<AndroidElement> InitDriver()
@@ -36,9 +39,9 @@ namespace Core
 
         public static void Quit()
         {
-            if(_driver != null && _driver.Value != null)
+            if(_driver != null)
             {
-                _driver.Value.Quit();
+                _driver.Quit();
                 _driver = null;
             }
         }

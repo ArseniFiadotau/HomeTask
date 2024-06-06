@@ -9,7 +9,7 @@ namespace Core.Pages.AvaTrade.Registration
     {
         protected By SignUpForFreeBy => By.XPath("//android.widget.TextView[@text='Sign-Up for Free!']");
         protected ComboBox CountryComboBox => new ComboBox(By.XPath("//android.view.View[./android.view.View[@text='Country of Residence']]"));
-        protected By EmailTextBoxBy => By.XPath("//android.view.View[./android.view.View[@text='Email']]/android.widget.EditText");
+        protected By EmailTextBoxBy => By.XPath("//android.view.View[./android.view.View[@text='Emai']]/android.widget.EditText");
         protected By PasswordTextBoxBy => By.XPath("//android.view.View[./android.view.View[@text='Password']]/android.widget.EditText");
         protected By CreateMyAccountButtonBy => By.XPath("//android.widget.Button[@text='Create My Account']");
 
