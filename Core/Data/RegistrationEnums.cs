@@ -2,7 +2,7 @@
 
 namespace Core.Data
 {
-    public class RegistrationEnums
+    public static class RegistrationEnums
     {
         public enum EmploymentStatus
         {

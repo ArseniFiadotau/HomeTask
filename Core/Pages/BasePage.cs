@@ -16,12 +16,12 @@ namespace Core.Pages
 
         public void WaitForVisible(By element, int? timeoutInSec = null)
         {
-            WaitForVisible(element, timeoutInSec);
+            WaitHelper.WaitForVisible(element, timeoutInSec);
         }
 
         public void WaitForDisappear(By element, int? timeoutInSec = null)
         {
-            WaitForDisappear(element, timeoutInSec);
+            WaitHelper.WaitForDisappear(element, timeoutInSec);
         }
 
         protected void SendKeysToElementBy(By elementBy, string text)

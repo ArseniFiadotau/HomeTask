@@ -21,7 +21,7 @@ namespace Tests
             initialSignUpPage.FulfillInitialInformation(personData.Country, personData.Email, personData.Password);
         }
 
-        public static IEnumerable<Person> GetTestData()
+        private static IEnumerable<Person> GetTestData()
         {
             yield return new Person
             {

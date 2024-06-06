@@ -7,7 +7,7 @@ namespace Core
     {
         private static AppiumDriver<AndroidElement>? _driver;
         private static object syncRoot = new Object();
-
+        
         private AndroidDriver() { }
 
         public static AppiumDriver<AndroidElement> GetInstance()
@@ -20,12 +20,12 @@ namespace Core
                     {
                         _driver = InitDriver();
                     }
-                } 
+                }
             }
 
             return _driver;
         }
-        
+
         private static AndroidDriver<AndroidElement> InitDriver()
         {
             var driverOptions = new AppiumOptions();
@@ -35,15 +35,6 @@ namespace Core
             driverOptions.AddAdditionalCapability("appium:automationName", "UiAutomator2");
 
             return new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723"), driverOptions);
-        }
-
-        public static void Quit()
-        {
-            if(_driver != null)
-            {
-                _driver.Quit();
-                _driver = null;
-            }
         }
     }
 }

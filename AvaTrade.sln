@@ -7,11 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools", "Tools\Tools.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{80BC49B4-CD5C-4262-A214-43C1798A5E4F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED232DD1-166B-42FB-867E-5B3A907E8799}"
-	ProjectSection(SolutionItems) = preProject
-		Resources\avatrade-trading-app.apk = Resources\avatrade-trading-app.apk
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{49F709B6-4B45-45B0-BBD0-5BB9B97F7FD7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{AA2FA5BD-9A05-4E2E-8120-5BA886CBBDE0}"

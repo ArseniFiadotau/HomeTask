@@ -7,7 +7,7 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Core.Helpers
 {
-    public class WaitHelper
+    public static class WaitHelper
     {
         private static readonly AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
 

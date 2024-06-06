@@ -4,7 +4,6 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using System.Diagnostics.CodeAnalysis;
 using Tools;
 
 namespace Tests
@@ -34,7 +33,7 @@ namespace Tests
             }
 
             Driver.TerminateApp(Config.AvaTradeAppId);
-            Driver.Quit();
+            Driver.Dispose();
         }
     }
 }
