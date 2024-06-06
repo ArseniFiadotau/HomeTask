@@ -1,20 +1,16 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Appium;
 
 namespace Core.Helpers.Controls
 {
-    public class ComboBox
+    public class ComboBoxControl: BaseControl
     {
-        public static AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
-
         private readonly string xPathLocator;
         private By ComboBoxBy => By.XPath(xPathLocator);
         protected By ComboBoxLabelBy => By.XPath($"{xPathLocator}/android.widget.TextView[@index='1']");
         protected By ComboBoxTextBoxBy => By.XPath($"{xPathLocator}/android.widget.EditText");
         protected string ComboBoxExpandedListViewElementTemplate => xPathLocator + "/following-sibling::android.widget.ListView/android.view.View[@text='{0}']";
 
-        public ComboBox(string xPathStringLocator)
+        public ComboBoxControl(string xPathStringLocator)
         {
             xPathLocator = xPathStringLocator;
         }
@@ -37,7 +33,7 @@ namespace Core.Helpers.Controls
                 WaitHelper.WaitForDisappear(countryToSelectBy);
                 WaitHelper.WaitForElementTextChange(ComboBoxLabelBy, value);
 
-                Driver.HideKeyboard();
+                Driver.HideKeyboardIfShown();
             }
             else
             {
@@ -47,6 +43,6 @@ namespace Core.Helpers.Controls
 
         public string GetValue() => Driver.FindElement(ComboBoxLabelBy).Text;
 
-        public bool IsVisible() => Driver.FindElement(ComboBoxBy).Displayed;
+        public override void WaitForVisible() => WaitHelper.WaitForVisible(ComboBoxBy);
     }
 }

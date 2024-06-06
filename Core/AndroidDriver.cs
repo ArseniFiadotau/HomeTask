@@ -5,12 +5,12 @@ namespace Core
 {
     public class AndroidDriver
     {
-        private static AppiumDriver<AndroidElement>? _driver;
+        private static AndroidDriver<AndroidElement>? _driver;
         private static object syncRoot = new Object();
         
         private AndroidDriver() { }
 
-        public static AppiumDriver<AndroidElement> GetInstance()
+        public static AndroidDriver<AndroidElement> GetInstance()
         {
             if (_driver == null)
             {

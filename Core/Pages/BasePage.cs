@@ -7,7 +7,7 @@ namespace Core.Pages
 {
     public class BasePage
     {
-        public static AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
 
         public virtual void WaitForPageLoading()
         {

@@ -7,7 +7,7 @@ namespace Core.Components
 {
     public class GenericDialogContent
     {
-        public static AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
 
         private By dialogBy = By.Id("com.avatrade.mobile:id/avatrade_generic_dialog_content");
         private By closeBy = By.Id("com.avatrade.mobile:id/walkthrough_skip");

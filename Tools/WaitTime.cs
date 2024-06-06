@@ -3,6 +3,7 @@
     public static class WaitTime
     {
         public static int OneSec = 1;
+        public static int ThreeSec = 3;
         public static int TenSec = 10;
         public static int ThirtySec = 30;
         public static int OneMin = 60;

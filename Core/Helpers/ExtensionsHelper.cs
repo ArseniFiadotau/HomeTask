@@ -35,6 +35,17 @@ namespace Core.Helpers
             }
         }
 
+        public static void HideKeyboardIfShown(this AndroidDriver<AndroidElement> driver)
+        {
+            // added wait in case of small instabilities. Not a good solution, but works for now
+            Thread.Sleep(TimeSpan.FromSeconds(WaitTime.ThreeSec));
 
+            if (driver.IsKeyboardShown())
+            {
+                driver.PressKeyCode(new KeyEvent(AndroidKeyCode.Back));
+                var func = () => !driver.IsKeyboardShown();
+                WaitHelper.WaitUntilTrue(func);
+            }
+        }
     }
 }

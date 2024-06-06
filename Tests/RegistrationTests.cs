@@ -8,6 +8,7 @@ namespace Tests
     public class RegistrationTests : BaseTest
     {
         private readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
+        private readonly ATPersonalDetails25Page personalDetails25 = new ATPersonalDetails25Page();
 
         [Test, TestCaseSource(nameof(GetTestData))]
         public void RegistrationTest(Person personData)
@@ -15,10 +16,9 @@ namespace Tests
             avaTradeGuestPage.InitiateAccountRegistration();
 
             initialSignUpPage.WaitForPageLoading();
-            
-            Assert.IsTrue(initialSignUpPage.IsCountryDropdownVisible(), "Country dropdown is not displayed");
-
             initialSignUpPage.FulfillInitialInformation(personData.Country, personData.Email, personData.Password);
+
+            personalDetails25.WaitForPageLoading();
         }
 
         private static IEnumerable<Person> GetTestData()

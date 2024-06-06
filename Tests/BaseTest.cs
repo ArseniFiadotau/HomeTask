@@ -13,7 +13,7 @@ namespace Tests
         public readonly AndroidHomePage androidHomePage = new AndroidHomePage();
         public readonly ATGuestPage avaTradeGuestPage = new ATGuestPage();
 
-        public readonly AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public readonly AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
 
         [SetUp]
         public void SetUp()

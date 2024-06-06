@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
+using System.Xml.Linq;
 using Tools;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
@@ -9,7 +10,7 @@ namespace Core.Helpers
 {
     public static class WaitHelper
     {
-        private static readonly AppiumDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        private static readonly AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
 
         public static void WaitForElementTextChange(By element, string text, int? timeoutInSec = null)
         {
@@ -50,6 +51,22 @@ namespace Core.Helpers
             catch (Exception e)
             {
                 throw new Exception($"Wait For Element {element} to disappear failed: {e.Message}");
+            }
+        }
+
+        public static void WaitUntilTrue(Func<bool> func, int? timeoutInSec = null)
+        {
+            var currentTime = DateTime.UtcNow.Second;
+            var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
+
+            while (!func.Invoke() && ((DateTime.UtcNow.Second - currentTime) < timeout))
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(WaitTime.OneSec));
+            }
+
+            if (!func.Invoke())
+            {
+                throw new Exception($"Condition didn't become true in {timeout}");
             }
         }
     }

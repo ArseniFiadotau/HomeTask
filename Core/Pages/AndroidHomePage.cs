@@ -1,4 +1,5 @@
 ﻿using Core.Helpers;
+using OpenQA.Selenium;
 using Tools;
 
 namespace Core.Pages
@@ -7,7 +8,7 @@ namespace Core.Pages
     {
         public void OpenAvaTradeApp()
         {
-            var avaTradeApp = Driver.FindElementByAccessibilityId("AvaTrade");
+            var avaTradeApp = Driver.FindElementByAccessibilityId("AvaTrade"); 
             avaTradeApp.Click();
 
             avaTradeApp.WaitForDisappear(WaitTime.ThirtySec);
