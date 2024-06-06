@@ -1,7 +1,7 @@
 using Tools;
 using NUnit.Framework.Internal;
-using Core.Data;
 using Core.Pages.AvaTrade.Registration;
+using static Core.Data.RegistrationEnums;
 
 namespace Tests
 {
@@ -12,7 +12,7 @@ namespace Tests
         [Test, TestCaseSource(nameof(GetTestData))]
         public void RegistrationTest(Person personData)
         {
-            avaTradeHomePage.InitiateAccountRegistration();
+            avaTradeGuestPage.InitiateAccountRegistration();
 
             initialSignUpPage.WaitForPageLoading();
             
@@ -21,7 +21,7 @@ namespace Tests
             initialSignUpPage.FulfillInitialInformation(personData.Country, personData.Email, personData.Password);
         }
 
-        public static IEnumerable<Person> GetTestData()
+        private static IEnumerable<Person> GetTestData()
         {
             yield return new Person
             {

@@ -4,15 +4,10 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.Extensions;
-using System.Drawing.Imaging;
-using System.Diagnostics.CodeAnalysis;
 using Tools;
-using Core.Pages.AvaTrade.Registration;
 
 namespace Tests
 {
-    [SuppressMessage("Structure", "NUnit1032:An IDisposable field/property should be Disposed in a TearDown method", Justification = "Disposing happens in Driver.Close() method")]
     public class BaseTest
     {
         public readonly AndroidHomePage androidHomePage = new AndroidHomePage();
@@ -38,7 +33,7 @@ namespace Tests
             }
 
             Driver.TerminateApp(Config.AvaTradeAppId);
-            Driver.Close();
+            Driver.Dispose();
         }
     }
 }

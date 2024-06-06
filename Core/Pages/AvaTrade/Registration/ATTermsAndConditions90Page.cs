@@ -26,7 +26,7 @@ namespace Core.Pages.AvaTrade.Registration
         public override void WaitForPageLoading()
         {
             WaitForVisible(progressBar, WaitTime.ThirtySec);
-            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
+            WaitForVisible(FinishButtonBy, WaitTime.ThirtySec);
         }
     }
 }
