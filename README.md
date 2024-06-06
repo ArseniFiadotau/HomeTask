@@ -13,3 +13,6 @@ TODOs:
 1. Complete registration test with different data inputs;
 2. Code refactoring;
 3. Add docs for the specific class and methods.
+
+Status on 06/07/2024
+![image](https://github.com/ArseniFiadotau/HomeTask/assets/14996964/0730ba8c-86d4-407b-af64-7470f8ee7992)
