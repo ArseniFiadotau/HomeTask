@@ -16,10 +16,8 @@ namespace Core
         {
             if (_driver == null)
             {
-                _driver = new ThreadLocal<AppiumDriver<AndroidElement>>
-                {
-                    Value = InitDriver()
-                };
+                _driver = new ThreadLocal<AppiumDriver<AndroidElement>>();
+                _driver.Value = InitDriver();
             }
 
             return _driver.Value;
@@ -33,7 +31,7 @@ namespace Core
             driverOptions.AddAdditionalCapability("appium:deviceName", "Pixel 7 API 34 Andr 14");
             driverOptions.AddAdditionalCapability("appium:automationName", "UiAutomator2");
 
-            return new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/"), driverOptions);
+            return new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723"), driverOptions);
         }
 
         public static void Quit()

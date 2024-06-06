@@ -9,6 +9,8 @@ namespace Core.Pages
         {
             var avaTradeApp = Driver.FindElementByAccessibilityId("AvaTrade");
             avaTradeApp.Click();
+
+            avaTradeApp.WaitForDisappear(WaitTime.ThirtySec);
         }
     }
 }
