@@ -1,7 +1,6 @@
 using Tools;
 using NUnit.Framework.Internal;
 using Core.Pages.AvaTrade.Registration;
-using Core.Pages;
 using static Core.Data.RegistrationEnums;
 
 namespace Tests
@@ -9,12 +8,11 @@ namespace Tests
     public class RegistrationTests : BaseTest
     {
         private readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
-        private readonly ATGuestPage guestPage = new ATGuestPage();
 
         [Test, TestCaseSource(nameof(GetTestData))]
         public void RegistrationTest(Person personData)
         {
-            guestPage.InitiateAccountRegistration();
+            avaTradeGuestPage.InitiateAccountRegistration();
 
             initialSignUpPage.WaitForPageLoading();
             

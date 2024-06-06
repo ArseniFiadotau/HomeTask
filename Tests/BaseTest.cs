@@ -4,11 +4,8 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.Extensions;
-using System.Drawing.Imaging;
 using System.Diagnostics.CodeAnalysis;
 using Tools;
-using Core.Pages.AvaTrade.Registration;
 
 namespace Tests
 {
