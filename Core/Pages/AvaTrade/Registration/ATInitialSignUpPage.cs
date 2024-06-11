@@ -22,13 +22,14 @@ namespace Core.Pages.AvaTrade.Registration
             WaitHelper.WaitForVisible(SignUpForFreeBy, WaitTime.OneMin);
             EmailTextBox.WaitForVisible();
             PasswordTextBox.WaitForVisible();
+            CountryComboBox.WaitForVisible(WaitTime.ThirtySec);
         }
 
-        public void FulfillInitialInformation(string country, string email, string password)
+        public void FillPageDataAndCreateAccount(string country, string email, string password)
         {
             CountryComboBox.Select(country);
-            EmailTextBox.EnterValue(email);
-            PasswordTextBox.EnterValue(password);
+            EmailTextBox.ClickAndSendKeys(email);
+            PasswordTextBox.ClickAndSendKeys(password);
 
             var button = Driver.FindElement(CreateMyAccountButtonBy);
             button.Click();

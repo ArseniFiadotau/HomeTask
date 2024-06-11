@@ -12,6 +12,14 @@ namespace Core.Data
             SelfEmployed
             // add more types later
         }
+        public enum SourceOfFunds
+        {
+            [Description("Savings")]
+            Savings,
+            [Description("Inheritance")]
+            Inheritance
+            // add more types later
+        }
 
         public enum EstimatedAnnualIncome
         {

@@ -31,10 +31,10 @@ namespace Core
             var driverOptions = new AppiumOptions();
 
             driverOptions.AddAdditionalCapability("platformName", "Android");
-            driverOptions.AddAdditionalCapability("appium:deviceName", "Pixel 7 API 34 Andr 14");
+            driverOptions.AddAdditionalCapability("appium:platformVersion", "12.0");
             driverOptions.AddAdditionalCapability("appium:automationName", "UiAutomator2");
 
-            return new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723"), driverOptions);
+            return new AndroidDriver<AndroidElement>(new Uri("http://192.168.100.126:5555"), driverOptions);
         }
     }
 }

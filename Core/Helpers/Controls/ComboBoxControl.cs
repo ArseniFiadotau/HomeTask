@@ -10,7 +10,7 @@ namespace Core.Helpers.Controls
         protected By ComboBoxTextBoxBy => By.XPath($"{xPathLocator}/android.widget.EditText");
         protected string ComboBoxExpandedListViewElementTemplate => xPathLocator + "/following-sibling::android.widget.ListView/android.view.View[@text='{0}']";
 
-        public ComboBoxControl(string xPathStringLocator)
+        public ComboBoxControl(string xPathStringLocator): base(By.XPath(xPathStringLocator))
         {
             xPathLocator = xPathStringLocator;
         }
@@ -22,6 +22,7 @@ namespace Core.Helpers.Controls
             {
                 var dropdownElement = Driver.FindElement(ComboBoxBy);
                 dropdownElement.Click();
+                Driver.HideKeyboardIfShown();
 
                 WaitHelper.WaitForVisible(ComboBoxTextBoxBy);
                 Driver.FindElement(ComboBoxTextBoxBy).SendKeys(value);
@@ -43,6 +44,6 @@ namespace Core.Helpers.Controls
 
         public string GetValue() => Driver.FindElement(ComboBoxLabelBy).Text;
 
-        public override void WaitForVisible() => WaitHelper.WaitForVisible(ComboBoxBy);
+        public override void WaitForVisible(int? timeoutInSec = null) => WaitHelper.WaitForVisible(ComboBoxBy, timeoutInSec: timeoutInSec);
     }
 }

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium.Appium.Android;
+﻿using Bogus.DataSets;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using Tools;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
