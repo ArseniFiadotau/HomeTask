@@ -21,6 +21,13 @@ TODOs:
 3. Add docs for methods.
 
 Status on 06/07/2024
+
 ![image](https://github.com/ArseniFiadotau/HomeTask/assets/14996964/0730ba8c-86d4-407b-af64-7470f8ee7992)
 
 Status on 06/12/2024
+
+![image](https://github.com/ArseniFiadotau/HomeTask/assets/14996964/b12cf079-6574-4a64-a360-963cc78114d6)
+
+because of the error:
+
+![image](https://github.com/ArseniFiadotau/HomeTask/assets/14996964/369fd99a-17eb-4bed-b236-9b5725948994)
