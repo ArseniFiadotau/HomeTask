@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Support.UI;
-using System.Xml.Linq;
 using Tools;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Core.Helpers
 {
+    /// <summary>
+    /// Helper for basic Waiting operations
+    /// </summary>
     public static class WaitHelper
     {
         private static readonly AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
@@ -22,7 +23,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"Wait For Element {element} text to change failed: {e.Message}");
+                throw new WaitException($"Wait For Element {element} text to change failed: {e.Message}");
             }
         }
 
@@ -36,7 +37,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"Wait For Element {element} to become visible failed: {e.Message}");
+                throw new WaitException($"Wait For Element {element} to become visible failed: {e.Message}");
             }
         }
 
@@ -50,10 +51,15 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new Exception($"Wait For Element {element} to disappear failed: {e.Message}");
+                throw new WaitException($"Wait For Element {element} to disappear failed: {e.Message}");
             }
         }
 
+        /// <summary>
+        /// Wait until true condition meets in specific amount of time
+        /// </summary>
+        /// <param name="func">Function in format of '() => booleanFunction()'</param>
+        /// <param name="timeoutInSec">Seconds to wait for condition to become true</param>
         public static void WaitUntilTrue(Func<bool> func, int? timeoutInSec = null)
         {
             var currentTime = DateTime.UtcNow.Second;
@@ -66,7 +72,7 @@ namespace Core.Helpers
 
             if (!func.Invoke())
             {
-                throw new Exception($"Condition didn't become true in {timeout}");
+                throw new WaitException($"Condition didn't become true in {timeout} seconds");
             }
         }
     }

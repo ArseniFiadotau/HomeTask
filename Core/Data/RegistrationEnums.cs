@@ -1,104 +1,156 @@
-﻿using System.ComponentModel;
+﻿using Core.Helpers;
 
 namespace Core.Data
 {
+    /// <summary>
+    /// Enum objects that were used in Registration process
+    /// </summary>
     public static class RegistrationEnums
     {
+        #region Common
+
+        public enum PrimaryOccupation
+        {
+            [StringValue("Accountancy")]
+            Accountancy,
+            [StringValue("Administrative")]
+            Administrative,
+            [StringValue("Agriculture")]
+            Agriculture,
+            [StringValue("Creative / media / marketing / PR / advertising")]
+            CreativeEtc,
+            [StringValue("Broker/Dealer")]
+            BrokerDealer,
+            [StringValue("Catering/Hospitality/Tourism")]
+            CateringEtc,
+            [StringValue("Construction/Real Estate")]
+            ConstructionRealEstate,
+            [StringValue("Education")]
+            Education,
+            [StringValue("Emergency Services")]
+            EmergencyServices,
+            [StringValue("Financial Services-Banking")]
+            FinancialServicesBanking
+        }
+
         public enum EmploymentStatus
         {
-            [Description("Employed")]
+            [StringValue("Employed")]
             Employed,
-            [Description("Self-Employed")]
-            SelfEmployed
-            // add more types later
+            [StringValue("Self-Employed")]
+            SelfEmployed,
+            [StringValue("Retired")]
+            Retired,
+            [StringValue("Student")]
+            Student,
+            [StringValue("Unemployed")]
+            Unemployed
         }
+
         public enum SourceOfFunds
         {
-            [Description("Savings")]
+            [StringValue("Employment")]
+            Employment,
+            [StringValue("Inheritance")]
+            Inheritance,
+            [StringValue("Investment")]
+            Investment,
+            [StringValue("Real Estate")]
+            RealEstate,
+            [StringValue("Savings")]
             Savings,
-            [Description("Inheritance")]
-            Inheritance
-            // add more types later
+            [StringValue("Other")]
+            Other
         }
 
         public enum EstimatedAnnualIncome
         {
-            [Description("More than 5 million")]
+            [StringValue("More than 5 million")]
             MoreThanFiveMillion,
-            [Description("1-5 million")]
-            LessThanFiveMillion
-            // add more types later
+            [StringValue("1-5 million")]
+            OneFiveMillions,
+            [StringValue("500,000-999,999")]
+            FiveHundredThousandOneMillion,
+            [StringValue("100,000-499,999")]
+            OneHundredFiveHundredThousand,
+            [StringValue("50,000-99,999")]
+            FiftyThousandOneHundred,
+            [StringValue("Less than 50,000")]
+            LessThanFiftyThousand
         }
 
         public enum EstimatedValueSavings
         {
-            [Description("More than 5 million")]
+            [StringValue("More than 5 million")]
             MoreThanFiveMillion,
-            [Description("1-5 million")]
-            LessThanFiveMillion
-            // add more types later
+            [StringValue("1-5 million")]
+            OneFiveMillions,
+            [StringValue("500,000-999,999")]
+            FiveHundredThousandOneMillion,
+            [StringValue("100,000-499,999")]
+            OneHundredFiveHundredThousand,
+            [StringValue("50,000-99,999")]
+            FiftyThousandOneHundred,
+            [StringValue("Less than 50,000")]
+            LessThanFiftyThousand
         }
 
         public enum FinancialRisk
         {
-            [Description("More than 5 million")]
+            [StringValue("More than 5 million")]
             MoreThanFiveMillion,
-            [Description("1-5 million")]
-            LessThanFiveMillion
-            // add more types later
+            [StringValue("1-5 million")]
+            OneFiveMillions,
+            [StringValue("500,000-999,999")]
+            FiveHundredThousandOneMillion,
+            [StringValue("100,000-499,999")]
+            OneHundredFiveHundredThousand,
+            [StringValue("50,000-99,999")]
+            FiftyThousandOneHundred,
+            [StringValue("Less than 50,000")]
+            LessThanFiftyThousand
         }
+
+        #endregion
+
+        //TODO: Extend enum options to match app actual dropdown options
+        #region Educational
 
         public enum MaximumSizePosition
         {
-            [Description("$50,000")]
+            [StringValue("$50,000")]
             FiftyThousand,
-            [Description("$5,000")]
+            [StringValue("$5,000")]
             FiveThousand
-            // add more types later
-        }
-
-        public enum Occupation
-        {
-            [Description("Accountancy")]
-            Accountancy,
-            [Description("Accountancy")]
-            Administrative
             // add more types later
         }
 
         public enum OpenPositionMayClose
         {
-            [Description("The market is moving against my position and I don't have enough equity to meet the margin requirement")]
+            [StringValue("The market is moving against my position and I don't have enough equity to meet the margin requirement")]
             AgainstMyPosition,
-            [Description("The market is moving in favor of my position")]
+            [StringValue("The market is moving in favor of my position")]
             InFavorOfMyPosition
         }
 
         public enum PrimaryPurpose
         {
-            [Description("Intraday trading")]
+            [StringValue("Intraday trading")]
             IntradayTrading,
-            [Description("Speculation")]
+            [StringValue("Speculation")]
             Speculation
             // add more types here
         }
 
-        public enum EstimatedSavingsAndInvestments
-        {
-            [Description("Employment")]
-            Employment,
-            [Description("Inheritance")]
-            Inheritance
-            // add more types later
-        }
-
         public enum TradingWithLeverage
         {
-            [Description("It may increase profits or losses")]
+            [StringValue("It may increase profits or losses")]
             IncreaseProfits,
-            [Description("Trading with leverage is risk free")]
+            [StringValue("Trading with leverage is risk free")]
             RiskFree
             // add more types later
         }
+
+        #endregion
     }
 }

@@ -1,10 +1,12 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using Core.Helpers;
 
 namespace Core.Pages
 {
+    /// <summary>
+    /// Base page that is used by other pages to unify common logic
+    /// </summary>
     public class BasePage
     {
         public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
@@ -14,12 +16,12 @@ namespace Core.Pages
 
         }
 
-        public void WaitForVisible(By element, int? timeoutInSec = null)
+        protected void WaitForVisible(By element, int? timeoutInSec = null)
         {
             WaitHelper.WaitForVisible(element, timeoutInSec);
         }
 
-        public void WaitForDisappear(By element, int? timeoutInSec = null)
+        protected void WaitForDisappear(By element, int? timeoutInSec = null)
         {
             WaitHelper.WaitForDisappear(element, timeoutInSec);
         }

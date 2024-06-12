@@ -2,11 +2,13 @@
 using Core.Helpers.Controls;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Interactions;
 using Tools;
 
 namespace Core.Pages.AvaTrade.Registration.PersonalData
 {
+    /// <summary>
+    /// First step of Personal Details page, opens when user defines country, email and password on Initial Sign-Up page
+    /// </summary>
     public class ATBasicPersonalDetailsPage : BasePage
     {
         private By FirstNameTextBoxBy => By.XPath("//android.view.View[@text='First Name']/../../android.widget.EditText");
@@ -27,8 +29,8 @@ namespace Core.Pages.AvaTrade.Registration.PersonalData
 
         public override void WaitForPageLoading()
         {
-            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
             PhoneTextBox.WaitForVisible(WaitTime.OneMin);
+            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
         }
 
         public void FillPageDataAndContinue(string firstName, string lastName, DateTime date, string phone)
@@ -39,13 +41,15 @@ namespace Core.Pages.AvaTrade.Registration.PersonalData
             DayTextBox.SendKeys(date.Day.ToString());
             MonthTextBox.SendKeys(date.Month.ToString());
 
+            // this is a different implementation that allow to trigger field validation, because just SendKeys doesn't trigger it
+            // and this stops registration process
             YearTextBox.SendKeysWithActions(date.Year.ToString());
 
             PhoneTextBox.ClickAndSendKeys(phone);
 
             var button = Driver.FindElement(ContinueButtonBy);
             button.Click();
-            button.WaitForDisappear();
+            button.WaitForDisappear(WaitTime.ThirtySec);
         }
     }
 }

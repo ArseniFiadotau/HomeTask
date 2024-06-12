@@ -2,11 +2,14 @@
 
 namespace Core.Helpers.Controls
 {
+    /// <summary>
+    /// Custom control for ComboBox (Select with ability to type value into it) controls
+    /// </summary>
     public class ComboBoxControl: BaseControl
     {
         private readonly string xPathLocator;
         private By ComboBoxBy => By.XPath(xPathLocator);
-        protected By ComboBoxLabelBy => By.XPath($"{xPathLocator}/android.widget.TextView[@index='1']");
+        protected By ComboBoxValueBy => By.XPath($"{xPathLocator}/android.widget.TextView[@index='1']");
         protected By ComboBoxTextBoxBy => By.XPath($"{xPathLocator}/android.widget.EditText");
         protected string ComboBoxExpandedListViewElementTemplate => xPathLocator + "/following-sibling::android.widget.ListView/android.view.View[@text='{0}']";
 
@@ -17,7 +20,6 @@ namespace Core.Helpers.Controls
 
         public void Select(string value)
         {
-            var currentValue = Driver.FindElement(ComboBoxLabelBy);
             if (GetValue() != value)
             {
                 var dropdownElement = Driver.FindElement(ComboBoxBy);
@@ -27,12 +29,12 @@ namespace Core.Helpers.Controls
                 WaitHelper.WaitForVisible(ComboBoxTextBoxBy);
                 Driver.FindElement(ComboBoxTextBoxBy).SendKeys(value);
 
-                var countryToSelectBy = By.XPath(string.Format(ComboBoxExpandedListViewElementTemplate, value));
-                WaitHelper.WaitForVisible(countryToSelectBy);
-                Driver.FindElement(countryToSelectBy).Click();
+                var itemToSelectBy = By.XPath(string.Format(ComboBoxExpandedListViewElementTemplate, value));
+                WaitHelper.WaitForVisible(itemToSelectBy);
+                Driver.FindElement(itemToSelectBy).Click();
 
-                WaitHelper.WaitForDisappear(countryToSelectBy);
-                WaitHelper.WaitForElementTextChange(ComboBoxLabelBy, value);
+                WaitHelper.WaitForDisappear(itemToSelectBy);
+                WaitForValueToBe(value);
 
                 Driver.HideKeyboardIfShown();
             }
@@ -42,7 +44,12 @@ namespace Core.Helpers.Controls
             }
         }
 
-        public string GetValue() => Driver.FindElement(ComboBoxLabelBy).Text;
+        public string GetValue() => Driver.FindElement(ComboBoxValueBy).Text;
+
+        public void WaitForValueToBe(string value)
+        {
+            WaitHelper.WaitForElementTextChange(ComboBoxValueBy, value);
+        }
 
         public override void WaitForVisible(int? timeoutInSec = null) => WaitHelper.WaitForVisible(ComboBoxBy, timeoutInSec: timeoutInSec);
     }

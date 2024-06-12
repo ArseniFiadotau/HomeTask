@@ -1,10 +1,12 @@
 ﻿using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium;
 using Core.Helpers;
 
 namespace Core.Components
 {
+    /// <summary>
+    /// TODO: Use it to work with AvaTrade dialogs
+    /// </summary>
     public class GenericDialogContent
     {
         public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();

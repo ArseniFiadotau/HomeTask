@@ -1,9 +1,11 @@
 ﻿using Core.Helpers;
-using OpenQA.Selenium;
 using Tools;
 
 namespace Core.Pages
 {
+    /// <summary>
+    /// Android home page with AvaTrade app on it
+    /// </summary>
     public class AndroidHomePage: BasePage
     {
         public void OpenAvaTradeApp()

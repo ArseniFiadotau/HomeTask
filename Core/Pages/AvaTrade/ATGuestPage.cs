@@ -3,6 +3,9 @@ using Tools;
 
 namespace Core.Pages
 {
+    /// <summary>
+    /// Guest or Login page that is opened when non-authenticated user opens the app
+    /// </summary>
     public class ATGuestPage : BasePage
     {
         protected By signUpButtonBy => By.Id("com.avatrade.mobile:id/login_sign_up");

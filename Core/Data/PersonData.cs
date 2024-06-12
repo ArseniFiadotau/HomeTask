@@ -2,8 +2,15 @@
 
 namespace Tools
 {
+    /// <summary>
+    /// User data class. Used to contain all the required info for register user.
+    /// Field 'IsEducational' can be used to specify Dynamic behavior
+    /// </summary>
     public class PersonData
     {
+        public bool IsEducational { get; set; }
+
+        //'required' is a new C# modifier that won't allow compilation if the field will not be defined
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string PhoneNumber { get; set; }
@@ -18,7 +25,13 @@ namespace Tools
 
         public required DateTime DateOfBirth { get; set; }
 
-        public required PrimaryPurpose PrimaryOccupation;
+        public required PrimaryOccupation PrimaryOccupation;
+        public required EmploymentStatus EmploymentStatus;
+        public required SourceOfFunds SourceOfFunds;
+        public required EstimatedAnnualIncome EstimatedAnnualIncome;
+
+        public required EstimatedValueSavings EstimatedValueSavings;
+        public required FinancialRisk FinancialRisk;
 
     }
 }

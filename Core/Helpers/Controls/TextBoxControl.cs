@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Interactions;
-using System.Xml.Linq;
 
 namespace Core.Helpers.Controls
 {
+    /// <summary>
+    /// Custom control for textbox elements.
+    /// </summary>
     public class TextBoxControl: BaseControl
     {
         private By TextBoxBy;
@@ -16,6 +17,9 @@ namespace Core.Helpers.Controls
 
         public void ClickAndSendKeys(string value)
         {
+            //TODO: Add more such log messages to other methods
+            //TODO: Think about improving log system
+            Console.WriteLine($"Click on {this} and send text '{value}'");
             var textBox = Driver.FindElement(TextBoxBy);
             if (textBox.Text != value)
             {
