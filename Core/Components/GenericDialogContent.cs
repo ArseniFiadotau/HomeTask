@@ -9,7 +9,7 @@ namespace Core.Components
     /// </summary>
     public class GenericDialogContent
     {
-        public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public static IWebDriver Driver = ChromeWebDriver.GetInstance();
 
         private By dialogBy = By.Id("com.avatrade.mobile:id/avatrade_generic_dialog_content");
         private By closeBy = By.Id("com.avatrade.mobile:id/walkthrough_skip");

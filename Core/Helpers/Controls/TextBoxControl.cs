@@ -21,12 +21,11 @@ namespace Core.Helpers.Controls
             //TODO: Think about improving log system
             Console.WriteLine($"Click on {this} and send text '{value}'");
             var textBox = Driver.FindElement(TextBoxBy);
+            textBox.ScrollIntoView();
             if (textBox.Text != value)
             {
                 textBox.Click();
                 textBox.SendKeys(value);
-
-                Driver.HideKeyboardIfShown();
             }
             else
             {
@@ -40,7 +39,6 @@ namespace Core.Helpers.Controls
             if (textBox.Text != value)
             {
                 textBox.SendKeys(value);
-                Driver.HideKeyboardIfShown();
             }
             else
             {
@@ -54,7 +52,6 @@ namespace Core.Helpers.Controls
             if (textBox.Text != value)
             {
                 new Actions(Driver).MoveToElement(textBox).SendKeys(value).Build().Perform();
-                Driver.HideKeyboardIfShown();
             }
             else
             {

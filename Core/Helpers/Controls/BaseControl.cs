@@ -9,7 +9,7 @@ namespace Core.Helpers.Controls
     /// </summary>
     public class BaseControl
     {
-        public AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public IWebDriver Driver = ChromeWebDriver.GetInstance();
         public By BaseControlBy;
 
         public BaseControl(By baseControlBy)
@@ -17,7 +17,7 @@ namespace Core.Helpers.Controls
             BaseControlBy = baseControlBy;
         }
 
-        public AndroidElement Find()
+        public IWebElement Find()
         {
             return Driver.FindElement(BaseControlBy);
         }

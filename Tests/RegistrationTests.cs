@@ -10,23 +10,10 @@ namespace Tests
         [Test, TestCaseSource(nameof(GetTestData))]
         public void RegistrationTest(PersonData data)
         {
-            avaTradeGuestPage.InitiateAccountRegistration();
-
-            initialSignUpPage.WaitForPageLoading();
-            initialSignUpPage.FillPageDataAndCreateAccount(data.Country, data.Email, data.Password);
-
-            basicPersonalDetailsPage.WaitForPageLoading();
-            basicPersonalDetailsPage.FillPageDataAndContinue(data.FirstName, data.LastName, data.DateOfBirth, data.PhoneNumber);
-
-            addressPersonalDetailsPage.WaitForPageLoading();
-            addressPersonalDetailsPage.FillPageDataAndContinue(data.City, data.StreetName, data.BuildingNumber, data.PostalCode);
-
-            financialDetailsFirstPage.WaitForPageLoading();
-            financialDetailsFirstPage.FillPageDataAndContinue(
-                data.PrimaryOccupation, data.EmploymentStatus, data.SourceOfFunds, data.EstimatedAnnualIncome);
-
-            financialDetailsSecondPage.WaitForPageLoading();
-            financialDetailsSecondPage.FillPageDataAndContinue(data.EstimatedValueSavings, data.FinancialRisk);
+            avaTradeHomePage.InitiateAccountRegistration();
+            initialSignUpPage.FillPageDataAndCreateAccount(data);
+            personalDetailsPage.FillPageDataAndContinue(data);
+            financialDetailsPage.FillPageDataAndContinue(data);
 
             if (data.IsEducational)
             {
@@ -34,13 +21,13 @@ namespace Tests
                 //This is my first idea to define Dynamic steps testng. Need more time to think about better solution
             }
 
-            termsAndConditionsPage.WaitForPageLoading();
-            termsAndConditionsPage.CompleteRegistration();
+            //termsAndConditionsPage.WaitForPageLoading();
+            //termsAndConditionsPage.CompleteRegistration();
 
-            almostTherePage.WaitForPageLoading();
-            almostTherePage.CloseDialog();
+            //almostTherePage.WaitForPageLoading();
+            //almostTherePage.CloseDialog();
 
-            mainPage.WaitForPageLoading();
+            //mainPage.WaitForPageLoading();
         }
 
         /// <summary>

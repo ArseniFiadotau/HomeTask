@@ -1,12 +1,14 @@
 ﻿using Core;
 using Core.Pages;
 using Core.Pages.AvaTrade.Registration.FinancialDetails;
-using Core.Pages.AvaTrade.Registration.PersonalData;
 using Core.Pages.AvaTrade.Registration;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
 using Tools;
+using OpenQA.Selenium.Chrome;
+using Core.Pages.AvaTrade.MainWebSite;
+using Core.Pages.AvaTrade.TradingPlatform;
+using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
 
 namespace Tests
 {
@@ -16,26 +18,23 @@ namespace Tests
     public class BaseTest
     {
         #region Page definitions
-        protected readonly AndroidHomePage androidHomePage = new AndroidHomePage();
-        protected readonly ATGuestPage avaTradeGuestPage = new ATGuestPage();
+        protected readonly ATHomePage avaTradeHomePage = new ATHomePage();
         protected readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
-        protected readonly ATBasicPersonalDetailsPage basicPersonalDetailsPage = new ATBasicPersonalDetailsPage();
-        protected readonly ATAddressPersonalDetailsPage addressPersonalDetailsPage = new ATAddressPersonalDetailsPage();
-        protected readonly ATFinancialDetailsFirstPage financialDetailsFirstPage = new ATFinancialDetailsFirstPage();
-        protected readonly ATFinancialDetailsSecondPage financialDetailsSecondPage = new ATFinancialDetailsSecondPage();
+        protected readonly ATPersonalDetailsPage personalDetailsPage = new ATPersonalDetailsPage();
+        protected readonly ATFinancialDetailsPage financialDetailsPage = new ATFinancialDetailsPage();
         protected readonly ATTermsAndConditionsPage termsAndConditionsPage = new ATTermsAndConditionsPage();
         protected readonly ATAlmostTherePage almostTherePage = new ATAlmostTherePage();
-        protected readonly ATMainPage mainPage = new ATMainPage();
+        protected readonly ATTradingPlatformPage mainPage = new ATTradingPlatformPage();
         #endregion
 
-        public AndroidDriver<AndroidElement> Driver;
+        public IWebDriver Driver;
 
         [SetUp]
         public void SetUp()
         {
-            Driver = AndroidDriver.GetInstance();
-            androidHomePage.OpenAvaTradeApp();
-            avaTradeGuestPage.WaitForPageLoading();
+            Driver = ChromeWebDriver.GetInstance();
+            avaTradeHomePage.WaitForPageLoading();
+            avaTradeHomePage.AcceptCookies();
         }
 
         [TearDown]
@@ -46,10 +45,9 @@ namespace Tests
             {
                 var screenshotPath = $"{DateTime.Now:yyyy-MM-dd HH-mm-ss}.png";
                 var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
-                screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+                screenshot.SaveAsFile(screenshotPath);
             }
 
-            Driver.TerminateApp(Config.AvaTradeAppId);
             Driver.Dispose();
         }
     }

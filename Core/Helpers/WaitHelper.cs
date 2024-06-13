@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Tools;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
@@ -11,7 +12,7 @@ namespace Core.Helpers
     /// </summary>
     public static class WaitHelper
     {
-        private static readonly AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        private static readonly IWebDriver Driver = ChromeWebDriver.GetInstance();
 
         public static void WaitForElementTextChange(By element, string text, int? timeoutInSec = null)
         {

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium.Appium.Android;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Android;
+using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System.Reflection;
 using Tools;
@@ -12,12 +14,17 @@ namespace Core.Helpers
     /// </summary>
     public static class ExtensionsHelper
     {
-        public static void WaitForVisible(this AndroidElement element, int? timeoutInSec = null)
+        public static void ScrollIntoView(this IWebElement element, int? timeoutInSec = null)
+        {
+            ChromeWebDriver.GetInstance().ExecuteJavaScript("arguments[0].scrollIntoView(true);", element);
+        }
+
+        public static void WaitForVisible(this IWebElement element, int? timeoutInSec = null)
         {
             var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
             try
             {
-                var wait = new WebDriverWait(AndroidDriver.GetInstance(), TimeSpan.FromSeconds(timeout));
+                var wait = new WebDriverWait(ChromeWebDriver.GetInstance(), TimeSpan.FromSeconds(timeout));
                 wait.Until(driver => element.Displayed);
             }
             catch (Exception e)
@@ -26,30 +33,17 @@ namespace Core.Helpers
             }
         }
 
-        public static void WaitForDisappear(this AndroidElement element, int? timeoutInSec = null)
+        public static void WaitForDisappear(this IWebElement element, int? timeoutInSec = null)
         {
             var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
             try
             {
-                var wait = new WebDriverWait(AndroidDriver.GetInstance(), TimeSpan.FromSeconds(timeout));
+                var wait = new WebDriverWait(ChromeWebDriver.GetInstance(), TimeSpan.FromSeconds(timeout));
                 wait.Until(ExpectedConditions.StalenessOf(element));
             }
             catch (Exception e)
             {
                 throw new Exception($"Wait For Element {element} to disappear failed: {e.Message}");
-            }
-        }
-
-        public static void HideKeyboardIfShown(this AndroidDriver<AndroidElement> driver)
-        {
-            // added wait in case of small instabilities. Not a good solution, but works for now
-            Thread.Sleep(TimeSpan.FromSeconds(WaitTime.ThreeSec));
-
-            if (driver.IsKeyboardShown())
-            {
-                driver.PressKeyCode(new KeyEvent(AndroidKeyCode.Back));
-                var func = () => !driver.IsKeyboardShown();
-                WaitHelper.WaitUntilTrue(func);
             }
         }
 

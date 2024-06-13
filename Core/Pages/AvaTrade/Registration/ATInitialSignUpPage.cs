@@ -2,6 +2,7 @@
 using Tools;
 using Core.Helpers;
 using Core.Helpers.Controls;
+using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
 
 namespace Core.Pages.AvaTrade.Registration
 {
@@ -10,37 +11,29 @@ namespace Core.Pages.AvaTrade.Registration
     /// </summary>
     public class ATInitialSignUpPage : BasePage
     {
-        private readonly By emailBy = By.XPath("//android.view.View[./android.view.View[@text='Email']]/android.widget.EditText");
-        private readonly By passwordBy = By.XPath("//android.view.View[./android.view.View[@text='Password']]/android.widget.EditText");
+        private readonly By emailBy = By.Id("input-email");
+        private readonly By passwordBy = By.Id("input-password");
 
-        protected By SignUpForFreeBy => By.XPath("//android.widget.TextView[@text='Sign-Up for Free!']");
-        protected ComboBoxControl CountryComboBox => new ComboBoxControl("//android.view.View[./android.view.View[@text='Country of Residence']]");
         protected TextBoxControl EmailTextBox => new TextBoxControl(emailBy);
         protected TextBoxControl PasswordTextBox => new TextBoxControl(passwordBy);
-        protected By CreateMyAccountButtonBy => By.XPath("//android.widget.Button[@text='Create My Account']");
+        protected By CreateMyAccountButtonBy => By.XPath("//button[.//span[.='Create My Account']]");
 
         public override void WaitForPageLoading()
         {
-            WaitHelper.WaitForVisible(SignUpForFreeBy, WaitTime.OneMin);
             EmailTextBox.WaitForVisible();
-            PasswordTextBox.WaitForVisible();
-            CountryComboBox.WaitForVisible(WaitTime.ThirtySec);
-            
-            CountryComboBox.WaitForValueToBe(Config.DeviceLocationCountry);
+            PasswordTextBox.WaitForVisible();            
         }
 
-        public void FillPageDataAndCreateAccount(string country, string email, string password)
+        public void FillPageDataAndCreateAccount(PersonData data)
         {
-            CountryComboBox.Select(country);
-            EmailTextBox.ClickAndSendKeys(email);
-            PasswordTextBox.ClickAndSendKeys(password);
-
-            //TODO: replace it with check validation icons
-            Thread.Sleep(TimeSpan.FromSeconds(WaitTime.FiveSec));
+            EmailTextBox.ClickAndSendKeys(data.Email);
+            PasswordTextBox.ClickAndSendKeys(data.Password);
 
             var button = Driver.FindElement(CreateMyAccountButtonBy);
             button.Click();
-            button.WaitForDisappear(WaitTime.ThirtySec);   
+            button.WaitForDisappear(WaitTime.ThirtySec);
+
+            new ATPersonalDetailsPage().WaitForPageLoading();
         }
     }
 }

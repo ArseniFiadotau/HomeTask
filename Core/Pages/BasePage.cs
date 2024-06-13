@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Android;
 using Core.Helpers;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using Tools;
 
 namespace Core.Pages
 {
@@ -9,11 +12,24 @@ namespace Core.Pages
     /// </summary>
     public class BasePage
     {
-        public static AndroidDriver<AndroidElement> Driver = AndroidDriver.GetInstance();
+        public static IWebDriver Driver = ChromeWebDriver.GetInstance();
 
         public virtual void WaitForPageLoading()
         {
+            WaitForPageToLoad();
+        }
 
+        private void WaitForPageToLoad()
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(WaitTime.ThirtySec));
+            try
+            {
+                wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            }
+            catch (Exception ex)
+            {
+                throw new TimeoutException("Timeout during page load", ex);
+            }
         }
 
         protected void WaitForVisible(By element, int? timeoutInSec = null)

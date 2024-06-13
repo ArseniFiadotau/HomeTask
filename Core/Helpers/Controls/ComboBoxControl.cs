@@ -9,9 +9,9 @@ namespace Core.Helpers.Controls
     {
         private readonly string xPathLocator;
         private By ComboBoxBy => By.XPath(xPathLocator);
-        protected By ComboBoxValueBy => By.XPath($"{xPathLocator}/android.widget.TextView[@index='1']");
-        protected By ComboBoxTextBoxBy => By.XPath($"{xPathLocator}/android.widget.EditText");
-        protected string ComboBoxExpandedListViewElementTemplate => xPathLocator + "/following-sibling::android.widget.ListView/android.view.View[@text='{0}']";
+        protected By ComboBoxValueBy => By.XPath($"{xPathLocator}//span[contains(@class,'-name')]");
+        protected By ComboBoxTextBoxBy => By.XPath($"{xPathLocator}//input[@type='text']");
+        protected string ComboBoxExpandedListViewElementTemplate => xPathLocator + "/../..//div[@role='listbox']//span[.='{0}']";
 
         public ComboBoxControl(string xPathStringLocator): base(By.XPath(xPathStringLocator))
         {
@@ -24,7 +24,6 @@ namespace Core.Helpers.Controls
             {
                 var dropdownElement = Driver.FindElement(ComboBoxBy);
                 dropdownElement.Click();
-                Driver.HideKeyboardIfShown();
 
                 WaitHelper.WaitForVisible(ComboBoxTextBoxBy);
                 Driver.FindElement(ComboBoxTextBoxBy).SendKeys(value);
@@ -35,8 +34,6 @@ namespace Core.Helpers.Controls
 
                 WaitHelper.WaitForDisappear(itemToSelectBy);
                 WaitForValueToBe(value);
-
-                Driver.HideKeyboardIfShown();
             }
             else
             {
