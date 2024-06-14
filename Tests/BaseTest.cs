@@ -1,14 +1,11 @@
 ﻿using Core;
-using Core.Pages;
-using Core.Pages.AvaTrade.Registration.FinancialDetails;
 using Core.Pages.AvaTrade.Registration;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using Tools;
-using OpenQA.Selenium.Chrome;
 using Core.Pages.AvaTrade.MainWebSite;
 using Core.Pages.AvaTrade.TradingPlatform;
 using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
+using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
 
 namespace Tests
 {
@@ -22,6 +19,7 @@ namespace Tests
         protected readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
         protected readonly ATPersonalDetailsPage personalDetailsPage = new ATPersonalDetailsPage();
         protected readonly ATFinancialDetailsPage financialDetailsPage = new ATFinancialDetailsPage();
+        protected readonly ATTradingExpiriencePage tradingExpiriencePage = new ATTradingExpiriencePage();
         protected readonly ATTermsAndConditionsPage termsAndConditionsPage = new ATTermsAndConditionsPage();
         protected readonly ATAlmostTherePage almostTherePage = new ATAlmostTherePage();
         protected readonly ATTradingPlatformPage mainPage = new ATTradingPlatformPage();

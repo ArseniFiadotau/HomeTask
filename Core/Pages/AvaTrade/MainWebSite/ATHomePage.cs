@@ -23,25 +23,26 @@ namespace Core.Pages.AvaTrade.MainWebSite
             AllowCookies();
 
             //often there is another acceptCookies window appear
-            try
-            {
-                WaitHelper.WaitForVisible(acceptCookiesButtonBy, WaitTime.TwentySec);
-                AllowCookies();
-            }
-            catch (WaitException)
-            {
-                Console.WriteLine("No second cookies window appear");
-            }
+            AllowCookies();
         }
 
         public void AllowCookies()
         {
-            var acceptCookiesButton = Driver.FindElement(acceptCookiesButtonBy);
-            acceptCookiesButton.Click();
-            acceptCookiesButton.WaitForDisappear();
+            try
+            {
+                WaitHelper.WaitForVisible(acceptCookiesButtonBy, WaitTime.TwentySec);
 
-            //page is reloading when cookies are accepted
-            WaitForPageLoading();
+                var acceptCookiesButton = Driver.FindElement(acceptCookiesButtonBy);
+                acceptCookiesButton.Click();
+                acceptCookiesButton.WaitForDisappear();
+
+                //page is reloading when cookies are accepted
+                WaitForPageLoading();
+            }
+            catch (WaitException)
+            {
+                Console.WriteLine("No cookies window appear");
+            }
         }
 
         public void InitiateAccountRegistration()

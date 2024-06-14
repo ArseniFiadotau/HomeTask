@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Tools;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
@@ -53,6 +51,20 @@ namespace Core.Helpers
             catch (Exception e)
             {
                 throw new WaitException($"Wait For Element {element} to disappear failed: {e.Message}");
+            }
+        }    
+        
+        public static void WaitForClickable(By element, int? timeoutInSec = null)
+        {
+            var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeout));
+                wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            }
+            catch (Exception e)
+            {
+                throw new WaitException($"Wait For Element {element} to become clickable failed: {e.Message}");
             }
         }
 

@@ -113,15 +113,26 @@ namespace Core.Data
 
         #endregion
 
-        //TODO: Extend enum options to match app actual dropdown options
         #region Educational
+
+        public enum TradingWithLeverage
+        {
+            [StringValue("It may increase profits or losses")]
+            IncreaseProfits,
+            [StringValue("Trading with leverage is risk free")]
+            RiskFree,
+            [StringValue("None of the above")]
+            None
+        }
 
         public enum MaximumSizePosition
         {
             [StringValue("$50,000")]
             FiftyThousand,
             [StringValue("$5,000")]
-            FiveThousand
+            FiveThousand,
+            [StringValue("$500,000")]
+            FiveHundredThousand
             // add more types later
         }
 
@@ -137,18 +148,18 @@ namespace Core.Data
         {
             [StringValue("Intraday trading")]
             IntradayTrading,
+            [StringValue("Short/medium term investments")]
+            ShortMediumInvestment,
             [StringValue("Speculation")]
-            Speculation
-            // add more types here
-        }
-
-        public enum TradingWithLeverage
-        {
-            [StringValue("It may increase profits or losses")]
-            IncreaseProfits,
-            [StringValue("Trading with leverage is risk free")]
-            RiskFree
-            // add more types later
+            Speculation,
+            [StringValue("Hedging of exposure to an underlying asset")]
+            HedgingOfExposure,
+            [StringValue("Investment portfolio diversification")]
+            InvestmentPortfolio,
+            [StringValue("Buy & hold investment")]
+            BuyAndHold,
+            [StringValue("Capital preservation")]
+            CapitalPreservation
         }
 
         #endregion

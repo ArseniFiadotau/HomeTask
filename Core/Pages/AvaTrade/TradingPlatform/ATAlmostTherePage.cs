@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using Tools;
 
-namespace Core.Pages
+namespace Core.Pages.AvaTrade.TradingPlatform
 {
     /// <summary>
     /// 'Almost there' page or dialog (need more time to define) that contains either ability to verify user
@@ -10,11 +10,12 @@ namespace Core.Pages
     /// </summary>
     public class ATAlmostTherePage : BasePage
     {
-        protected By headerBy => By.XPath("//android.widget.TextView[@text=\"Almost There\"]");
-        protected By closeButtonBy => By.XPath("//android.widget.Button[@resource-id=\"typ-close-icon\"]");
+        protected By headerBy => By.XPath("//p[.='Almost There']");
+        protected By closeButtonBy => By.Id("typ-close-icon");
 
         public override void WaitForPageLoading()
         {
+            base.WaitForPageLoading();
             WaitForVisible(headerBy, WaitTime.ThirtySec);
         }
 
@@ -22,7 +23,7 @@ namespace Core.Pages
         {
             var closeDialogButton = Driver.FindElement(closeButtonBy);
             closeDialogButton.Click();
-            closeDialogButton.WaitForDisappear(WaitTime.ThirtySec);
+            WaitHelper.WaitForDisappear(closeButtonBy);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using OpenQA.Selenium;
-using Tools;
+﻿using Core.Components;
+using OpenQA.Selenium;
 
 namespace Core.Pages.AvaTrade.TradingPlatform
 {
@@ -8,11 +8,23 @@ namespace Core.Pages.AvaTrade.TradingPlatform
     /// </summary>
     public class ATTradingPlatformPage : BasePage
     {
-        private By logoBy => By.Id("com.avatrade.mobile:id/ava_main_toolbar_icon");
+        private By leftSideIconsListBy => By.CssSelector("ul[data-qa='aside__list']");
 
         public override void WaitForPageLoading()
         {
-            WaitForVisible(logoBy, WaitTime.ThirtySec);
+            Driver.SwitchTo().DefaultContent();
+        }
+
+        public void CloseTutorialDialog()
+        {
+            var dialog = new PopupDialog("You are all set to start trading on your Account. Start this easy 3-step tutorial and learn how to open a trade, monitor and modify your trades.");
+            dialog.WaitForLoading();
+            dialog.Close();
+        }
+
+        public bool IconsAreDisplayed()
+        {
+            return Driver.FindElements(leftSideIconsListBy).Count > 0;
         }
     }
 }

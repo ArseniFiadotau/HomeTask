@@ -20,6 +20,7 @@ namespace Core.Pages.AvaTrade.Registration
 
         public override void WaitForPageLoading()
         {
+            base.WaitForPageLoading();
             EmailTextBox.WaitForVisible();
             PasswordTextBox.WaitForVisible();            
         }

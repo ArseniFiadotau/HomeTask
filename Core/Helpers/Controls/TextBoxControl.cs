@@ -39,6 +39,9 @@ namespace Core.Helpers.Controls
             if (textBox.Text != value)
             {
                 textBox.SendKeys(value);
+                
+                //wait a bit before next operation
+                Thread.Sleep(300);
             }
             else
             {
@@ -51,7 +54,7 @@ namespace Core.Helpers.Controls
             var textBox = Driver.FindElement(TextBoxBy);
             if (textBox.Text != value)
             {
-                new Actions(Driver).MoveToElement(textBox).SendKeys(value).Build().Perform();
+                new Actions(Driver).MoveToElement(textBox).Click().SendKeys(value).Build().Perform();
             }
             else
             {

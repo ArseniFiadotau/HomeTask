@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using Tools;
 using static Core.Data.RegistrationEnums;
 
-namespace Core.Pages.AvaTrade.Registration.FinancialDetails
+namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
 {
     /// <summary>
     /// First page of Financial Details registration process, opens when Personal Data pages are completed
@@ -14,13 +14,13 @@ namespace Core.Pages.AvaTrade.Registration.FinancialDetails
         //TODO: Add progress bar validation based on PersonData.IsEducational field here and in other places
         //protected By progressBar = By.XPath("//android.widget.ProgressBar[@text=\"65.0\"]");
 
-        protected DropDownControl PrimaryOccupationDropDown => 
+        protected DropDownControl PrimaryOccupationDropDown =>
             new DropDownControl("//div[@data-automation='OccupationOrBusiness']");
-        protected DropDownControl EmploymentDropDown => 
+        protected DropDownControl EmploymentDropDown =>
             new DropDownControl("//div[@data-automation='EmploymentStatus']");
-        protected DropDownControl SourceOfFundsDropDown => 
+        protected DropDownControl SourceOfFundsDropDown =>
             new DropDownControl("//div[@data-automation='SourceOfTradeFunds']");
-        protected DropDownControl EstimatedAnnualIncomeDropDown => 
+        protected DropDownControl EstimatedAnnualIncomeDropDown =>
             new DropDownControl("//div[@data-automation='EstimatedAnnualIncome']");
         protected DropDownControl EstimatedValueSavingsDropDown =>
             new DropDownControl("//div[@data-automation='SavingsAndInvestments']");
@@ -31,6 +31,7 @@ namespace Core.Pages.AvaTrade.Registration.FinancialDetails
 
         public override void WaitForPageLoading()
         {
+            base.WaitForPageLoading();
             PrimaryOccupationDropDown.WaitForVisible(WaitTime.ThirtySec);
             WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
         }
@@ -40,7 +41,7 @@ namespace Core.Pages.AvaTrade.Registration.FinancialDetails
             PrimaryOccupationDropDown.Select(pd.PrimaryOccupation.GetStringValue());
             EmploymentDropDown.Select(pd.EmploymentStatus.GetStringValue());
             SourceOfFundsDropDown.Select(pd.SourceOfFunds.GetStringValue());
-            EstimatedAnnualIncomeDropDown.Select(pd.EstimatedAnnualIncome.GetStringValue()); 
+            EstimatedAnnualIncomeDropDown.Select(pd.EstimatedAnnualIncome.GetStringValue());
             EstimatedValueSavingsDropDown.Select(pd.EstimatedValueSavings.GetStringValue());
             FinancialRiskDropDown.Select(pd.FinancialRisk.GetStringValue());
 

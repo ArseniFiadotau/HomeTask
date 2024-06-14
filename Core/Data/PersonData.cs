@@ -33,5 +33,9 @@ namespace Tools
         public required EstimatedValueSavings EstimatedValueSavings;
         public required FinancialRisk FinancialRisk;
 
+        public TradingWithLeverage TradingWithLeverage;
+        public MaximumSizePosition MaximumSizePosition;
+        public OpenPositionMayClose OpenPositionMayClose;
+        public PrimaryPurpose PrimaryPurpose;
     }
 }

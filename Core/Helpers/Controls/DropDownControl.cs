@@ -33,6 +33,9 @@ namespace Core.Helpers.Controls
                 WaitHelper.WaitForDisappear(itemToSelectBy);
                 var func = () => GetValue() == value;
                 WaitHelper.WaitUntilTrue(func, WaitTime.FiveSec);
+
+                //wait a bit before next operation
+                Thread.Sleep(300);
             }
             else
             {

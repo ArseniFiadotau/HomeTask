@@ -1,7 +1,7 @@
 ﻿using Core.Components;
 using Core.Helpers;
 using Core.Helpers.Controls;
-using Core.Pages.AvaTrade.Registration.FinancialDetails;
+using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
 using OpenQA.Selenium;
 using Tools;
 
@@ -43,7 +43,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
 
         public void SwitchToIFrame()
         {
-            //time is so big because user is switched to trading platform
+            //wait time period is bigger because user is switched to trading platform
             WaitForVisible(iFrameBy, WaitTime.OneMin);
 
             var iframe = Driver.FindElement(iFrameBy);
