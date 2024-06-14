@@ -11,9 +11,13 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
     /// </summary>
     public class ATTradingExpiriencePage : BasePage
     {
-        protected By YesButtonBy => By.CssSelector("for='option-1_84-1'");
-        protected By NoButtonBy => By.CssSelector("for='option-1_84-2'");
+        protected By YesButtonBy => By.CssSelector("label[for='option-1_84-1']");
+        protected By NoButtonBy => By.CssSelector("label[for='option-1_84-2']");
 
+        protected DropDownControl NumOfTimesTradedinForexCfdsDropDown =>
+            new DropDownControl("//div[@data-automation='NumOfTimesTradedinForexCfds']");
+        protected DropDownControl WhatWasTheAverageSizeOfTradesDropDown =>
+            new DropDownControl("//div[@data-automation='WhatWasTheAverageSizeOfTrades']");
         protected DropDownControl TradingWithLeverageAppliesDropDown =>
             new DropDownControl("//div[@data-automation='TradingWithLeverageApplies']");
         protected DropDownControl TradingWithLeverageMaximumPositionDropDown =>
@@ -39,11 +43,16 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
             var yesButton = Driver.FindElement(YesButtonBy);
             yesButton.Click();
 
-            TradingWithLeverageAppliesDropDown.Select(pd.PrimaryOccupation.GetStringValue());
-            TradingWithLeverageMaximumPositionDropDown.Select(pd.EmploymentStatus.GetStringValue());
-            OpenPositionAutomaticallyCloseDropDown.Select(pd.SourceOfFunds.GetStringValue());
-            WhyTradeWithUsDropDown.Select(pd.EstimatedAnnualIncome.GetStringValue());
+            NumOfTimesTradedinForexCfdsDropDown.Select(pd.TradingExperienceExtent.GetStringValue());
+            WhatWasTheAverageSizeOfTradesDropDown.Select(pd.EstimatedValueOfTrades.GetStringValue());
+            TradingWithLeverageAppliesDropDown.Select(pd.TradingWithLeverageStatement.GetStringValue());
+            TradingWithLeverageMaximumPositionDropDown.Select(pd.MaximumSizePosition.GetStringValue());
+            OpenPositionAutomaticallyCloseDropDown.Select(pd.OpenPositionMayClose.GetStringValue());
+            WhyTradeWithUsDropDown.Select(pd.PrimaryPurpose.GetStringValue());
 
+            var confirmButton = Driver.FindElement(IUnderstandTransactionNatureBy);
+            confirmButton.Click();
+            
             var button = Driver.FindElement(ContinueButtonBy);
             button.Click();
             button.WaitForDisappear();

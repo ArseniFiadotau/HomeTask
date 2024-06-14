@@ -115,7 +115,36 @@ namespace Core.Data
 
         #region Educational
 
-        public enum TradingWithLeverage
+        public enum TradingExperienceExtent
+        {
+            [StringValue("0")]
+            Zero,
+            [StringValue("1-10")]
+            OneTen,
+            [StringValue("11-25")]
+            ElevenTwentyFive,
+            [StringValue("26-50")]
+            TwentySixFixty,
+            [StringValue("More than 50")]
+            MoreThanFifty
+        }
+
+        public enum EstimatedValueOfTrades
+        {
+            [StringValue("0")]
+            Zero,
+            [StringValue("1-999")]
+            LessThanThousand,
+            [StringValue("1,000-24,999")]
+            LessThanTwentyFiveThousand,
+            [StringValue("25,000-50,000")]
+            LessThanFiftyThousand,
+            [StringValue("50,000-250,000")]
+            LessThanTwoHundredFiftyThousand,
+            [StringValue("Over 250,000")]
+            OverTwoHundredFiftyThousand,
+        }
+        public enum TradingWithLeverageStatement
         {
             [StringValue("It may increase profits or losses")]
             IncreaseProfits,

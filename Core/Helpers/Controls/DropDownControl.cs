@@ -25,6 +25,7 @@ namespace Core.Helpers.Controls
                 var dropdownElement = Driver.FindElement(DropDownBy);
                 dropdownElement.ScrollIntoView();
                 dropdownElement.Click();
+                Thread.Sleep(TimeSpan.FromSeconds(WaitTime.OneSec));
 
                 var itemToSelectBy = By.XPath(string.Format(DropDownExpandedListViewElementTemplate, value));
                 WaitHelper.WaitForVisible(itemToSelectBy);
@@ -35,7 +36,7 @@ namespace Core.Helpers.Controls
                 WaitHelper.WaitUntilTrue(func, WaitTime.FiveSec);
 
                 //wait a bit before next operation
-                Thread.Sleep(300);
+                Thread.Sleep(TimeSpan.FromSeconds(WaitTime.OneSec));
             }
             else
             {
