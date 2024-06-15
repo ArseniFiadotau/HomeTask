@@ -6,6 +6,7 @@ using Core.Pages.AvaTrade.MainWebSite;
 using Core.Pages.AvaTrade.TradingPlatform;
 using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
 using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
+using Tools;
 
 namespace Tests
 {
@@ -27,10 +28,16 @@ namespace Tests
 
         public IWebDriver Driver;
 
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            Driver = ChromeWebDriver.GetInstance();
+        }
+
         [SetUp]
         public void SetUp()
         {
-            Driver = ChromeWebDriver.GetInstance();
+            Driver.Navigate().GoToUrl(Config.AvaTradeWebSite);
             avaTradeHomePage.WaitForPageLoading();
             avaTradeHomePage.AcceptCookies();
         }
@@ -45,7 +52,12 @@ namespace Tests
                 var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
                 screenshot.SaveAsFile(screenshotPath);
             }
+        }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            Driver.Quit();
             Driver.Dispose();
         }
     }

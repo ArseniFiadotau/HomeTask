@@ -32,7 +32,6 @@ namespace Core
             var driver = new ChromeDriver();
 
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(Config.AvaTradeWebSite);
 
             return driver;
         }

@@ -20,8 +20,6 @@ namespace Tests
             {
                 tradingExpiriencePage.WaitForPageLoading();
                 tradingExpiriencePage.FillPageDataAndContinue(data);
-                //TODO: Add additional logic for covering educational logic
-                //This is my first idea to define Dynamic steps testng. Need more time to think about better solution
             }
 
             termsAndConditionsPage.WaitForPageLoading();
@@ -33,7 +31,7 @@ namespace Tests
             mainPage.WaitForPageLoading();
             mainPage.CloseTutorialDialog();
 
-            Assert.IsTrue(mainPage.IconsAreDisplayed(), "Icons on trading page is not displayed");
+            Assert.IsTrue(mainPage.AreIconsDisplayed(), "Icons on trading page is not displayed");
         }
 
         /// <summary>

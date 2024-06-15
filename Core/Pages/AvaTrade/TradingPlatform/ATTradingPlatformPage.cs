@@ -22,7 +22,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform
             dialog.Close();
         }
 
-        public bool IconsAreDisplayed()
+        public bool AreIconsDisplayed()
         {
             return Driver.FindElements(leftSideIconsListBy).Count > 0;
         }
