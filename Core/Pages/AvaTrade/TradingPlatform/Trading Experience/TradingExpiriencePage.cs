@@ -9,7 +9,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
     /// <summary>
     /// Trading Experience registration page
     /// </summary>
-    public class ATTradingExpiriencePage : BasePage
+    public class TradingExpiriencePage : BasePage
     {
         protected By YesButtonBy => By.CssSelector("label[for='option-1_84-1']");
         protected By NoButtonBy => By.CssSelector("label[for='option-1_84-2']");

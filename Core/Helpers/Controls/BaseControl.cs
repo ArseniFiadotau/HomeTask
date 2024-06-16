@@ -17,19 +17,9 @@ namespace Core.Helpers.Controls
             BaseControlBy = baseControlBy;
         }
 
-        public IWebElement Find()
-        {
-            return Driver.FindElement(BaseControlBy);
-        }
-
         public virtual void WaitForVisible(int? timeoutInSec = null)
         {
 
-        }
-
-        public void Click()
-        {
-            Find().Click();
         }
     }
 }

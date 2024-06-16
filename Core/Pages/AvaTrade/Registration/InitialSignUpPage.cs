@@ -9,7 +9,7 @@ namespace Core.Pages.AvaTrade.Registration
     /// <summary>
     /// Initial Sign-Up page, that is displayed after 'Create new account' or 'Sign-up' buttons on the login screen
     /// </summary>
-    public class ATInitialSignUpPage : BasePage
+    public class InitialSignUpPage : BasePage
     {
         private readonly By emailBy = By.Id("input-email");
         private readonly By passwordBy = By.Id("input-password");
@@ -34,7 +34,7 @@ namespace Core.Pages.AvaTrade.Registration
             button.Click();
             button.WaitForDisappear(WaitTime.ThirtySec);
 
-            new ATPersonalDetailsPage().WaitForPageLoading();
+            new PersonalDetailsPage().WaitForPageLoading();
         }
     }
 }

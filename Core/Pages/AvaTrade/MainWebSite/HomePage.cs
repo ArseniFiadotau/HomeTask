@@ -8,7 +8,7 @@ namespace Core.Pages.AvaTrade.MainWebSite
     /// <summary>
     /// Home AvaTrade web-page
     /// </summary>
-    public class ATHomePage : BasePage
+    public class HomePage : BasePage
     {
         protected By registerAccountButtonBy => By.XPath("//a[@href='/trading-account']");
         protected By acceptCookiesButtonBy => By.Id("ava_allow_all_c");
@@ -20,13 +20,13 @@ namespace Core.Pages.AvaTrade.MainWebSite
 
         public void AcceptCookies()
         {
-            AllowCookies();
+            AllowCookies("first");
 
             //often there is another acceptCookies window appear
-            AllowCookies();
+            AllowCookies("second");
         }
 
-        public void AllowCookies()
+        public void AllowCookies(string attempt)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Core.Pages.AvaTrade.MainWebSite
             }
             catch (WaitException)
             {
-                Console.WriteLine("No cookies window appear");
+                Console.WriteLine($"No {attempt} cookies window appear");
             }
         }
 
@@ -51,7 +51,7 @@ namespace Core.Pages.AvaTrade.MainWebSite
             var registerAccountButton = Driver.FindElement(registerAccountButtonBy);
             registerAccountButton.Click();
 
-            new ATInitialSignUpPage().WaitForPageLoading();
+            new InitialSignUpPage().WaitForPageLoading();
         }
     }
 }

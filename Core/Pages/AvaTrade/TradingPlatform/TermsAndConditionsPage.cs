@@ -9,7 +9,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform
     /// <summary>
     /// 'Terms and Conditions' page that appear at the end of registration process
     /// </summary>
-    public class ATTermsAndConditionsPage : BasePage
+    public class TermsAndConditionsPage : BasePage
     {
         //TODO: Add verification that this is toggled
         protected By NotUsCitizenToggleBy => By.CssSelector("input[name='NoUsaCitizenship']");

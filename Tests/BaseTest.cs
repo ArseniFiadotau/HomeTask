@@ -7,6 +7,7 @@ using Core.Pages.AvaTrade.TradingPlatform;
 using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
 using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
 using Tools;
+using Core.Pages.AvaTrade.TradingPlatform.Verification;
 
 namespace Tests
 {
@@ -16,14 +17,17 @@ namespace Tests
     public class BaseTest
     {
         #region Page definitions
-        protected readonly ATHomePage avaTradeHomePage = new ATHomePage();
-        protected readonly ATInitialSignUpPage initialSignUpPage = new ATInitialSignUpPage();
-        protected readonly ATPersonalDetailsPage personalDetailsPage = new ATPersonalDetailsPage();
-        protected readonly ATFinancialDetailsPage financialDetailsPage = new ATFinancialDetailsPage();
-        protected readonly ATTradingExpiriencePage tradingExpiriencePage = new ATTradingExpiriencePage();
-        protected readonly ATTermsAndConditionsPage termsAndConditionsPage = new ATTermsAndConditionsPage();
-        protected readonly ATAlmostTherePage almostTherePage = new ATAlmostTherePage();
-        protected readonly ATTradingPlatformPage mainPage = new ATTradingPlatformPage();
+        protected readonly HomePage avaTradeHomePage = new HomePage();
+        protected readonly InitialSignUpPage initialSignUpPage = new InitialSignUpPage();
+        protected readonly PersonalDetailsPage personalDetailsPage = new PersonalDetailsPage();
+        protected readonly FinancialDetailsPage financialDetailsPage = new FinancialDetailsPage();
+        protected readonly TradingExpiriencePage tradingExpiriencePage = new TradingExpiriencePage();
+        protected readonly TermsAndConditionsPage termsAndConditionsPage = new TermsAndConditionsPage();
+        protected readonly WarningPage warningPage = new WarningPage();
+        protected readonly AlmostTherePage almostTherePage = new AlmostTherePage();
+        protected readonly TradingPlatformPage mainPage = new TradingPlatformPage();
+        protected readonly UploadDocumentsPage atUploadDocumentsPage = new UploadDocumentsPage();
+        protected readonly VerifyAccountPage atVerifyAccountPage = new VerifyAccountPage();
         #endregion
 
         public IWebDriver Driver;
@@ -52,6 +56,8 @@ namespace Tests
                 var screenshot = ((ITakesScreenshot)Driver).GetScreenshot();
                 screenshot.SaveAsFile(screenshotPath);
             }
+
+            Driver.SwitchTo().DefaultContent();
         }
 
         [OneTimeTearDown]

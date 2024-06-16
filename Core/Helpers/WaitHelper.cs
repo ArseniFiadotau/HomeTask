@@ -22,7 +22,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new WaitException($"Wait For Element {element} text to change failed: {e.Message}");
+                throw new WaitException($"Wait For Element '{element}' text to change failed: {e.Message}");
             }
         }
 
@@ -36,7 +36,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new WaitException($"Wait For Element {element} to become visible failed: {e.Message}");
+                throw new WaitException($"Wait For Element '{element}' to become visible failed: {e.Message}");
             }
         }
 
@@ -50,7 +50,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new WaitException($"Wait For Element {element} to disappear failed: {e.Message}");
+                throw new WaitException($"Wait For Element '{element}' to disappear failed: {e.Message}");
             }
         }    
         
@@ -64,7 +64,7 @@ namespace Core.Helpers
             }
             catch (Exception e)
             {
-                throw new WaitException($"Wait For Element {element} to become clickable failed: {e.Message}");
+                throw new WaitException($"Wait For Element '{element}' to become clickable failed: {e.Message}");
             }
         }
 
@@ -86,6 +86,19 @@ namespace Core.Helpers
             if (!func.Invoke())
             {
                 throw new WaitException($"Condition didn't become true in {timeout} seconds");
+            }
+        }
+
+        public static void WaitForPageJsLoading()
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(WaitTime.ThirtySec));
+            try
+            {
+                wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            }
+            catch (Exception ex)
+            {
+                throw new TimeoutException("Timeout is exceeded during page load", ex);
             }
         }
     }

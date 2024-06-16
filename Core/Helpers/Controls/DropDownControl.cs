@@ -20,15 +20,17 @@ namespace Core.Helpers.Controls
 
         public void Select(string value)
         {
+            Console.WriteLine($"\tSelect value '{value}' in dropdown '{DropDownBy}'");
             if (GetValue() != value)
             {
+                WaitHelper.WaitForVisible(DropDownBy);
                 var dropdownElement = Driver.FindElement(DropDownBy);
                 dropdownElement.ScrollIntoView();
                 dropdownElement.Click();
-                Thread.Sleep(TimeSpan.FromSeconds(WaitTime.OneSec));
 
                 var itemToSelectBy = By.XPath(string.Format(DropDownExpandedListViewElementTemplate, value));
                 WaitHelper.WaitForVisible(itemToSelectBy);
+                WaitHelper.WaitForClickable(itemToSelectBy);
                 Driver.FindElement(itemToSelectBy).Click();
 
                 WaitHelper.WaitForDisappear(itemToSelectBy);
@@ -58,6 +60,7 @@ namespace Core.Helpers.Controls
         }
 
 
-        public override void WaitForVisible(int? timeoutInSec = null) => WaitHelper.WaitForVisible(DropDownBy, timeoutInSec: timeoutInSec);
+        public override void WaitForVisible(int? timeoutInSec = null) 
+            => WaitHelper.WaitForVisible(DropDownBy, timeoutInSec: timeoutInSec);
     }
 }

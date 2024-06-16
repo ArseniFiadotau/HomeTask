@@ -9,7 +9,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
     /// <summary>
     /// First page of Financial Details registration process, opens when Personal Data pages are completed
     /// </summary>
-    public class ATFinancialDetailsPage : BasePage
+    public class FinancialDetailsPage : BasePage
     {
         //TODO: Add progress bar validation based on PersonData.IsEducational field here and in other places
         //protected By progressBar = By.XPath("//android.widget.ProgressBar[@text=\"65.0\"]");

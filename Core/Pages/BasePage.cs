@@ -1,9 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
 using Core.Helpers;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Tools;
+using System.Threading;
 
 namespace Core.Pages
 {
@@ -16,22 +15,10 @@ namespace Core.Pages
 
         public virtual void WaitForPageLoading()
         {
-            WaitForPageToLoad();
+            Console.WriteLine($"Loading page {this.GetType().Name}");
+            WaitHelper.WaitForPageJsLoading();
         }
-
-        private void WaitForPageToLoad()
-        {
-            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(WaitTime.ThirtySec));
-            try
-            {
-                wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
-            }
-            catch (Exception ex)
-            {
-                throw new TimeoutException("Timeout during page load", ex);
-            }
-        }
-
+        
         protected void WaitForVisible(By element, int? timeoutInSec = null)
         {
             WaitHelper.WaitForVisible(element, timeoutInSec);
@@ -40,6 +27,22 @@ namespace Core.Pages
         protected void WaitForDisappear(By element, int? timeoutInSec = null)
         {
             WaitHelper.WaitForDisappear(element, timeoutInSec);
+        }
+
+        protected bool IsElementExist(By element, int? timeoutInSec = null)
+        {
+            var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeout));
+                wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(element));
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         protected void SendKeysToElementBy(By elementBy, string text)
@@ -51,7 +54,7 @@ namespace Core.Pages
             }
             catch (Exception e)
             {
-                throw new Exception($"Failed to send keys to the element: {elementBy}. {e.Message}");
+                throw new Exception($"\tFailed to send keys to the element: {elementBy}. {e.Message}");
             }
         }
     }

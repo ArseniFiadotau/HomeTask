@@ -10,7 +10,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
     /// <summary>
     /// Personal Details page, opens when user defines email and password on Initial Sign-Up page
     /// </summary>
-    public class ATPersonalDetailsPage : BasePage
+    public class PersonalDetailsPage : BasePage
     {
         private By iFrameBy = By.CssSelector("iframe[data-qa='iframe__container']");
 
@@ -87,7 +87,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
             button.Click();
             button.WaitForDisappear(WaitTime.ThirtySec);
 
-            new ATFinancialDetailsPage().WaitForPageLoading();
+            new FinancialDetailsPage().WaitForPageLoading();
         }
     }
 }

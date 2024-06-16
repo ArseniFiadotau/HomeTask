@@ -6,18 +6,20 @@ namespace Core.Pages.AvaTrade.TradingPlatform
     /// <summary>
     /// AvaTrade home page
     /// </summary>
-    public class ATTradingPlatformPage : BasePage
+    public class TradingPlatformPage : BasePage
     {
         private By leftSideIconsListBy => By.CssSelector("ul[data-qa='aside__list']");
 
         public override void WaitForPageLoading()
         {
+            base.WaitForPageLoading();
             Driver.SwitchTo().DefaultContent();
         }
 
         public void CloseTutorialDialog()
         {
             var dialog = new PopupDialog("You are all set to start trading on your Account. Start this easy 3-step tutorial and learn how to open a trade, monitor and modify your trades.");
+            //error is here
             dialog.WaitForLoading();
             dialog.Close();
         }

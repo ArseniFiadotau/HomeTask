@@ -20,6 +20,7 @@ namespace Core.Helpers.Controls
 
         public void Select(string value)
         {
+            Console.WriteLine($"\tSelect value '{value}' in combobox '{ComboBoxBy}'");
             if (GetValue() != value)
             {
                 var dropdownElement = Driver.FindElement(ComboBoxBy);
@@ -48,6 +49,7 @@ namespace Core.Helpers.Controls
             WaitHelper.WaitForElementTextChange(ComboBoxValueBy, value);
         }
 
-        public override void WaitForVisible(int? timeoutInSec = null) => WaitHelper.WaitForVisible(ComboBoxBy, timeoutInSec: timeoutInSec);
+        public override void WaitForVisible(int? timeoutInSec = null) 
+            => WaitHelper.WaitForVisible(ComboBoxBy, timeoutInSec: timeoutInSec);
     }
 }

@@ -17,9 +17,7 @@ namespace Core.Helpers.Controls
 
         public void ClickAndSendKeys(string value)
         {
-            //TODO: Add more such log messages to other methods
-            //TODO: Think about improving log system
-            Console.WriteLine($"Click on {this} and send text '{value}'");
+            Console.WriteLine($"\tClick on textbox '{TextBoxBy}' and send text '{value}'");
             var textBox = Driver.FindElement(TextBoxBy);
             textBox.ScrollIntoView();
             if (textBox.Text != value)
@@ -29,12 +27,13 @@ namespace Core.Helpers.Controls
             }
             else
             {
-                Console.WriteLine($"Value '{value}' is already in textbox");
+                Console.WriteLine($"\tValue '{value}' is already in textbox");
             }
         }
 
         public void SendKeys(string value)
         {
+            Console.WriteLine($"\tSend text '{value}' into textbox '{TextBoxBy}'");
             var textBox = Driver.FindElement(TextBoxBy);
             if (textBox.Text != value)
             {
@@ -45,7 +44,7 @@ namespace Core.Helpers.Controls
             }
             else
             {
-                Console.WriteLine($"Value '{value}' is already in textbox");
+                Console.WriteLine($"\tValue '{value}' is already in textbox");
             }
         }
 
@@ -58,7 +57,7 @@ namespace Core.Helpers.Controls
             }
             else
             {
-                Console.WriteLine($"Value '{value}' is already in textbox");
+                Console.WriteLine($"\tValue '{value}' is already in textbox");
             }            
         }
 
@@ -68,6 +67,7 @@ namespace Core.Helpers.Controls
             textBox.Clear();
         }
 
-        public override void WaitForVisible(int? timeoutInSec = null) => WaitHelper.WaitForVisible(TextBoxBy, timeoutInSec: timeoutInSec);
+        public override void WaitForVisible(int? timeoutInSec = null) 
+            => WaitHelper.WaitForVisible(TextBoxBy, timeoutInSec: timeoutInSec);
     }
 }
