@@ -1,11 +1,10 @@
 ﻿using Core.Components;
 using Core.Helpers;
+using Core.Helpers.Controls;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Service.Options;
-using OpenQA.Selenium.Support.UI;
 using Tools;
 
-namespace Core.Pages.AvaTrade.TradingPlatform.Verification
+namespace Core.Pages.AvaTrade.TradingPlatform.Registration.Verification
 {
     /// <summary>
     /// Upload documents verification page
@@ -23,7 +22,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.Verification
         protected By qrStepsBy = By.CssSelector("div.scan-qr-code__steps");
         protected By qrCanvasBy = By.CssSelector("div[class*=qr-container] canvas");
 
-        protected By closeButtonBy = By.CssSelector("button.close-icon");
+        protected ButtonControl CloseButton => new ButtonControl(By.CssSelector("button.close-icon"));
 
         public override void WaitForPageLoading()
         {
@@ -52,12 +51,11 @@ namespace Core.Pages.AvaTrade.TradingPlatform.Verification
 
         public void NavigateToMainPage()
         {
-            var closeButton = Driver.FindElement(closeButtonBy);
-            closeButton.Click();
+            CloseButton.Click();
 
             var modalDialog = new ModalDialog("You can continue another time from the point you stopped");
             modalDialog.WaitForLoading();
-            modalDialog.Close();
+            modalDialog.SaveAndExit();
         }
     }
 }

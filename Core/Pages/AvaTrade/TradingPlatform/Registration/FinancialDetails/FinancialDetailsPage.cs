@@ -2,12 +2,11 @@
 using Core.Helpers.Controls;
 using OpenQA.Selenium;
 using Tools;
-using static Core.Data.RegistrationEnums;
 
-namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
+namespace Core.Pages.AvaTrade.TradingPlatform.Registration.FinancialDetails
 {
     /// <summary>
-    /// First page of Financial Details registration process, opens when Personal Data pages are completed
+    /// Financial Details registration page  opens when Personal Data page is completed
     /// </summary>
     public class FinancialDetailsPage : BasePage
     {
@@ -27,13 +26,13 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
         protected DropDownControl FinancialRiskDropDown =>
             new DropDownControl("//div[@data-automation='AmountIntendInvestingEveryYear']");
 
-        protected By ContinueButtonBy => By.CssSelector("button[type='submit']");
+        protected ButtonControl ContinueButton => new ButtonControl(By.CssSelector("button[type='submit']"));
 
         public override void WaitForPageLoading()
         {
             base.WaitForPageLoading();
             PrimaryOccupationDropDown.WaitForVisible(WaitTime.ThirtySec);
-            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
+            ContinueButton.WaitForVisible(timeoutInSec: WaitTime.ThirtySec);
         }
 
         public void FillPageDataAndContinue(PersonData pd)
@@ -45,9 +44,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
             EstimatedValueSavingsDropDown.Select(pd.EstimatedValueSavings.GetStringValue());
             FinancialRiskDropDown.Select(pd.FinancialRisk.GetStringValue());
 
-            var button = Driver.FindElement(ContinueButtonBy);
-            button.Click();
-            button.WaitForDisappear();
+            ContinueButton.Click();
         }
     }
 }

@@ -76,7 +76,7 @@ namespace Tests
             }
 
             mainPage.WaitForPageLoading();
-            mainPage.CloseTutorialDialog();
+            mainPage.CloseTutorialDialogIfAppears();
 
             Assert.IsTrue(mainPage.AreIconsDisplayed(), "Icons on trading page is not displayed");
         }

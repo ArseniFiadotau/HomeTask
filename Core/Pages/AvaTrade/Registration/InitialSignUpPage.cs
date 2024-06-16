@@ -1,13 +1,12 @@
 ﻿using OpenQA.Selenium;
 using Tools;
-using Core.Helpers;
 using Core.Helpers.Controls;
-using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
+using Core.Pages.AvaTrade.TradingPlatform.Registration.PersonalData;
 
 namespace Core.Pages.AvaTrade.Registration
 {
     /// <summary>
-    /// Initial Sign-Up page, that is displayed after 'Create new account' or 'Sign-up' buttons on the login screen
+    /// Initial Sign-Up page, that is displayed after 'Create new account' or 'Sign-up' buttons on the home page
     /// </summary>
     public class InitialSignUpPage : BasePage
     {
@@ -16,7 +15,7 @@ namespace Core.Pages.AvaTrade.Registration
 
         protected TextBoxControl EmailTextBox => new TextBoxControl(emailBy);
         protected TextBoxControl PasswordTextBox => new TextBoxControl(passwordBy);
-        protected By CreateMyAccountButtonBy => By.XPath("//button[.//span[.='Create My Account']]");
+        protected ButtonControl CreateMyAccountButton => new ButtonControl(By.XPath("//button[.//span[.='Create My Account']]"));
 
         public override void WaitForPageLoading()
         {
@@ -30,9 +29,8 @@ namespace Core.Pages.AvaTrade.Registration
             EmailTextBox.ClickAndSendKeys(data.Email);
             PasswordTextBox.ClickAndSendKeys(data.Password);
 
-            var button = Driver.FindElement(CreateMyAccountButtonBy);
-            button.Click();
-            button.WaitForDisappear(WaitTime.ThirtySec);
+            CreateMyAccountButton.Click();
+            CreateMyAccountButton.WaitForDisappear(timeoutInSec: WaitTime.ThirtySec);
 
             new PersonalDetailsPage().WaitForPageLoading();
         }

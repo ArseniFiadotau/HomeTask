@@ -1,9 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Tools;
 
 namespace Core
 {
+    /// <summary>
+    /// Chrome driver singleton class
+    /// </summary>
     public class ChromeWebDriver
     {
         private static IWebDriver _driver;

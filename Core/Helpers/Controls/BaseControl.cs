@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
 
 namespace Core.Helpers.Controls
 {

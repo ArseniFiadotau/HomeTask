@@ -1,7 +1,7 @@
 ﻿using Core.Helpers;
+using Core.Helpers.Controls;
 using Core.Pages.AvaTrade.Registration;
 using OpenQA.Selenium;
-using Tools;
 
 namespace Core.Pages.AvaTrade.MainWebSite
 {
@@ -10,8 +10,8 @@ namespace Core.Pages.AvaTrade.MainWebSite
     /// </summary>
     public class HomePage : BasePage
     {
-        protected By registerAccountButtonBy => By.XPath("//a[@href='/trading-account']");
-        protected By acceptCookiesButtonBy => By.Id("ava_allow_all_c");
+        protected ButtonControl registerAccountButton => new ButtonControl(By.XPath("//a[@href='/trading-account']"));
+        protected ButtonControl acceptCookiesButton => new ButtonControl(By.Id("ava_allow_all_c"));
 
         public override void WaitForPageLoading()
         {
@@ -30,9 +30,7 @@ namespace Core.Pages.AvaTrade.MainWebSite
         {
             try
             {
-                WaitHelper.WaitForVisible(acceptCookiesButtonBy, WaitTime.TwentySec);
-
-                var acceptCookiesButton = Driver.FindElement(acceptCookiesButtonBy);
+                acceptCookiesButton.WaitForVisible();
                 acceptCookiesButton.Click();
                 acceptCookiesButton.WaitForDisappear();
 
@@ -47,8 +45,7 @@ namespace Core.Pages.AvaTrade.MainWebSite
 
         public void InitiateAccountRegistration()
         {
-            WaitForVisible(registerAccountButtonBy);
-            var registerAccountButton = Driver.FindElement(registerAccountButtonBy);
+            registerAccountButton.WaitForVisible();
             registerAccountButton.Click();
 
             new InitialSignUpPage().WaitForPageLoading();

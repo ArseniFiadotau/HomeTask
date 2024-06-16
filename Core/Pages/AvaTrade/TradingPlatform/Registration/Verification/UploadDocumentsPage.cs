@@ -1,10 +1,7 @@
-﻿using Core.Helpers;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Service.Options;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using Tools;
 
-namespace Core.Pages.AvaTrade.TradingPlatform.Verification
+namespace Core.Pages.AvaTrade.TradingPlatform.Registration.Verification
 {
     /// <summary>
     /// Upload documents verification page
@@ -14,7 +11,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.Verification
         protected By headerBy = By.XPath("//span[.='Upload Documents']");
         protected By customerIdentityVerificationBy = By.XPath("//button[contains(.,'Customer Identity Verification')]");
         protected By uploadFrontIDCardBy = By.XPath("//label[.='Front ID Card']");
-        protected By otherDocumentsUploadBy= By.XPath("//button[contains(.,'Other Documents Upload')]");
+        protected By otherDocumentsUploadBy = By.XPath("//button[contains(.,'Other Documents Upload')]");
 
         protected By avaTradeLogoBy = By.CssSelector("header a");
 

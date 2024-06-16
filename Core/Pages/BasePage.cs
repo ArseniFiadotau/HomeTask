@@ -2,7 +2,7 @@
 using Core.Helpers;
 using OpenQA.Selenium.Support.UI;
 using Tools;
-using System.Threading;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace Core.Pages
 {
@@ -31,18 +31,7 @@ namespace Core.Pages
 
         protected bool IsElementExist(By element, int? timeoutInSec = null)
         {
-            var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
-            try
-            {
-                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeout));
-                wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(element));
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            return WaitHelper.IsElementExist(element, timeoutInSec);
         }
 
         protected void SendKeysToElementBy(By elementBy, string text)

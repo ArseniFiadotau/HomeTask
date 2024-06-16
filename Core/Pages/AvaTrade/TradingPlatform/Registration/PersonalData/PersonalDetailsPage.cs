@@ -1,11 +1,11 @@
 ﻿using Core.Components;
-using Core.Helpers;
 using Core.Helpers.Controls;
 using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
+using Core.Pages.AvaTrade.TradingPlatform.Registration.FinancialDetails;
 using OpenQA.Selenium;
 using Tools;
 
-namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
+namespace Core.Pages.AvaTrade.TradingPlatform.Registration.PersonalData
 {
     /// <summary>
     /// Personal Details page, opens when user defines email and password on Initial Sign-Up page
@@ -14,32 +14,21 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
     {
         private By iFrameBy = By.CssSelector("iframe[data-qa='iframe__container']");
 
-        private By FirstNameTextBoxBy => By.CssSelector("input[name='FirstName']");
-        private By LastNameTextBoxBy => By.CssSelector("input[name='LastName']");
-        private By DayTextBoxBy => By.CssSelector("input[name='date-of-birth-day']");
-        private By MonthTextBoxBy => By.CssSelector("input[name='date-of-birth-month']");
-        private By YearTextBoxBy => By.CssSelector("input[name='date-of-birth-year']");
         protected ComboBoxControl CountryComboBox => new ComboBoxControl("//div[@role='combobox'][.//input[@name='Country']]");
-        private By PhoneTextBoxBy => By.CssSelector("input[name='Phone']");
 
-        private By CityTextBoxBy => By.CssSelector("input[name='City']");
-        private By StreetNameTextBoxBy => By.CssSelector("input[name='Street']");
-        private By BuldingNumberTextBoxBy => By.CssSelector("input[name='BuildingNumber']");
-        private By PostalCodeTextBoxBy => By.CssSelector("input[name='ZipCode']");
+        protected TextBoxControl FirstNameTextBox => new TextBoxControl(By.CssSelector("input[name='FirstName']"));
+        protected TextBoxControl LastNameTextBox => new TextBoxControl(By.CssSelector("input[name='LastName']"));
+        protected TextBoxControl DayTextBox => new TextBoxControl(By.CssSelector("input[name='date-of-birth-day']"));
+        protected TextBoxControl MonthTextBox => new TextBoxControl(By.CssSelector("input[name='date-of-birth-month']"));
+        protected TextBoxControl YearTextBox => new TextBoxControl(By.CssSelector("input[name='date-of-birth-year']"));
+        protected TextBoxControl PhoneTextBox => new TextBoxControl(By.CssSelector("input[name='Phone']"));
 
-        protected TextBoxControl FirstNameTextBox => new TextBoxControl(FirstNameTextBoxBy);
-        protected TextBoxControl LastNameTextBox => new TextBoxControl(LastNameTextBoxBy);
-        protected TextBoxControl DayTextBox => new TextBoxControl(DayTextBoxBy);
-        protected TextBoxControl MonthTextBox => new TextBoxControl(MonthTextBoxBy);
-        protected TextBoxControl YearTextBox => new TextBoxControl(YearTextBoxBy);
-        protected TextBoxControl PhoneTextBox => new TextBoxControl(PhoneTextBoxBy);
+        protected TextBoxControl CityTextBox => new TextBoxControl(By.CssSelector("input[name='City']"));
+        protected TextBoxControl StreetNameTextBox => new TextBoxControl(By.CssSelector("input[name='Street']"));
+        protected TextBoxControl BuildingNumberTextBox => new TextBoxControl(By.CssSelector("input[name='BuildingNumber']"));
+        protected TextBoxControl PostalCodeTextBox => new TextBoxControl(By.CssSelector("input[name='ZipCode']"));
 
-        protected TextBoxControl CityTextBox => new TextBoxControl(CityTextBoxBy);
-        protected TextBoxControl StreetNameTextBox => new TextBoxControl(StreetNameTextBoxBy);
-        protected TextBoxControl BuildingNumberTextBox => new TextBoxControl(BuldingNumberTextBoxBy);
-        protected TextBoxControl PostalCodeTextBox => new TextBoxControl(PostalCodeTextBoxBy);
-
-        protected By ContinueButtonBy => By.CssSelector("button[type='submit']");
+        protected ButtonControl ContinueButton => new ButtonControl(By.CssSelector("button[type='submit']"));
 
         public void SwitchToIFrame()
         {
@@ -57,7 +46,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
             FirstNameTextBox.WaitForVisible(WaitTime.ThirtySec);
 
             CityTextBox.WaitForVisible(WaitTime.ThirtySec);
-            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
+            ContinueButton.WaitForVisible(WaitTime.ThirtySec);
         }
 
         public void FillPageDataAndContinue(PersonData data)
@@ -83,9 +72,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.PersonalData
 
             PhoneTextBox.ClickAndSendKeys(data.PhoneNumber);
 
-            var button = Driver.FindElement(ContinueButtonBy);
-            button.Click();
-            button.WaitForDisappear(WaitTime.ThirtySec);
+            ContinueButton.Click();
 
             new FinancialDetailsPage().WaitForPageLoading();
         }

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using Core.Helpers;
+using Tools;
 
 namespace Core.Components
 {
@@ -17,6 +18,11 @@ namespace Core.Components
         public PopupDialog(string text)
         {
             textBy = By.XPath(string.Format("//div[@data-qa='tour-popup__start-text'][.='{0}']", text));
+        }
+
+        public bool IsDisplayed()
+        {
+            return WaitHelper.IsElementExist(dialogBy, timeoutInSec: WaitTime.FiveSec);
         }
 
         public void WaitForLoading()

@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Android;
-using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 using System.Reflection;
 using Tools;
@@ -16,7 +14,7 @@ namespace Core.Helpers
     {
         public static void ScrollIntoView(this IWebElement element, int? timeoutInSec = null)
         {
-            ChromeWebDriver.GetInstance().ExecuteJavaScript("arguments[0].scrollIntoView(true);", element);
+            ((IJavaScriptExecutor)ChromeWebDriver.GetInstance()).ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 
         public static void WaitForVisible(this IWebElement element, int? timeoutInSec = null)

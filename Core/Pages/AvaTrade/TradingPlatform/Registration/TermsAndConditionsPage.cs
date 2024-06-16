@@ -1,10 +1,10 @@
-﻿using Core.Helpers;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using Tools;
 using OpenQA.Selenium.Support.UI;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using Core.Helpers.Controls;
 
-namespace Core.Pages.AvaTrade.TradingPlatform
+namespace Core.Pages.AvaTrade.TradingPlatform.Registration
 {
     /// <summary>
     /// 'Terms and Conditions' page that appear at the end of registration process
@@ -15,7 +15,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform
         protected By NotUsCitizenToggleBy => By.CssSelector("input[name='NoUsaCitizenship']");
         protected By AcceptTermsToggleBy => By.XPath("//span[text()='I have read, understood and accepted the']");
 
-        protected By FinishButtonBy => By.CssSelector("button[type='submit']");
+        protected ButtonControl FinishButton => new ButtonControl(By.CssSelector("button[type='submit']"));
 
         public override void WaitForPageLoading()
         {
@@ -25,7 +25,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform
             new WebDriverWait(Driver, TimeSpan.FromSeconds(WaitTime.TwentySec))
                 .Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.CssSelector("iframe[data-qa='iframe__container']")));
 
-            WaitForVisible(FinishButtonBy, WaitTime.ThirtySec);
+            FinishButton.WaitForVisible(WaitTime.ThirtySec);
             WaitForVisible(AcceptTermsToggleBy, WaitTime.ThirtySec);
         }
 
@@ -34,9 +34,8 @@ namespace Core.Pages.AvaTrade.TradingPlatform
             var toggle = Driver.FindElement(AcceptTermsToggleBy);
             toggle.Click();
 
-            var button = Driver.FindElement(FinishButtonBy);
-            button.Click();
-            button.WaitForDisappear(WaitTime.ThirtySec);
+            FinishButton.Click();
+            FinishButton.WaitForDisappear(WaitTime.ThirtySec);
         }
 
         //TODO: Add verification for downloaded PDF document

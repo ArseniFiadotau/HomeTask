@@ -4,15 +4,17 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using Core.Pages.AvaTrade.MainWebSite;
 using Core.Pages.AvaTrade.TradingPlatform;
-using Core.Pages.AvaTrade.TradingPlatform.PersonalData;
 using Core.Pages.AvaTrade.TradingPlatform.FinancialDetails;
 using Tools;
-using Core.Pages.AvaTrade.TradingPlatform.Verification;
+using Core.Pages.AvaTrade.TradingPlatform.Registration.PersonalData;
+using Core.Pages.AvaTrade.TradingPlatform.Registration.FinancialDetails;
+using Core.Pages.AvaTrade.TradingPlatform.Registration.Verification;
+using Core.Pages.AvaTrade.TradingPlatform.Registration;
 
 namespace Tests
 {
     /// <summary>
-    /// Base test class. Have all the common logic for AvaTrade testing
+    /// Base test class. Has all the common logic for AvaTrade testing
     /// </summary>
     public class BaseTest
     {

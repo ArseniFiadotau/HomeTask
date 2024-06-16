@@ -2,7 +2,6 @@
 using Core.Helpers.Controls;
 using OpenQA.Selenium;
 using Tools;
-using static Core.Data.RegistrationEnums;
 
 namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
 {
@@ -11,8 +10,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
     /// </summary>
     public class TradingExpiriencePage : BasePage
     {
-        protected By YesButtonBy => By.CssSelector("label[for='option-1_84-1']");
-        protected By NoButtonBy => By.CssSelector("label[for='option-1_84-2']");
+        protected ButtonControl YesButton => new ButtonControl(By.CssSelector("label[for='option-1_84-1']"));
 
         protected DropDownControl NumOfTimesTradedinForexCfdsDropDown =>
             new DropDownControl("//div[@data-automation='NumOfTimesTradedinForexCfds']");
@@ -28,20 +26,19 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
             new DropDownControl("//div[@data-automation='WhyTradeWithUs']");
         protected By IUnderstandTransactionNatureBy => By.CssSelector("label[for='question-11_297']");
 
-        protected By ContinueButtonBy => By.CssSelector("button[type='submit']");
+        protected ButtonControl ContinueButton => new ButtonControl(By.CssSelector("button[type='submit']"));
 
         public override void WaitForPageLoading()
         {
             base.WaitForPageLoading();
-            WaitForVisible(YesButtonBy);
+            YesButton.WaitForVisible();
             TradingWithLeverageAppliesDropDown.WaitForVisible(WaitTime.ThirtySec);
-            WaitForVisible(ContinueButtonBy, WaitTime.ThirtySec);
+            ContinueButton.WaitForVisible(WaitTime.ThirtySec);
         }
 
         public void FillPageDataAndContinue(PersonData pd)
         {
-            var yesButton = Driver.FindElement(YesButtonBy);
-            yesButton.Click();
+            YesButton.Click();
 
             NumOfTimesTradedinForexCfdsDropDown.Select(pd.TradingExperienceExtent.GetStringValue());
             WhatWasTheAverageSizeOfTradesDropDown.Select(pd.EstimatedValueOfTrades.GetStringValue());
@@ -53,9 +50,7 @@ namespace Core.Pages.AvaTrade.TradingPlatform.FinancialDetails
             var confirmButton = Driver.FindElement(IUnderstandTransactionNatureBy);
             confirmButton.Click();
             
-            var button = Driver.FindElement(ContinueButtonBy);
-            button.Click();
-            button.WaitForDisappear();
+            ContinueButton.Click();
         }
     }
 }

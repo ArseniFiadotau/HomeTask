@@ -101,5 +101,21 @@ namespace Core.Helpers
                 throw new TimeoutException("Timeout is exceeded during page load", ex);
             }
         }
+
+        public static bool IsElementExist(By element, int? timeoutInSec = null)
+        {
+            var timeout = timeoutInSec != null ? timeoutInSec.Value : Config.DefaultTimeoutTimeInSec;
+            try
+            {
+                var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeout));
+                wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(element));
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -16,12 +16,14 @@ namespace Core.Pages.AvaTrade.TradingPlatform
             Driver.SwitchTo().DefaultContent();
         }
 
-        public void CloseTutorialDialog()
+        public void CloseTutorialDialogIfAppears()
         {
             var dialog = new PopupDialog("You are all set to start trading on your Account. Start this easy 3-step tutorial and learn how to open a trade, monitor and modify your trades.");
-            //error is here
-            dialog.WaitForLoading();
-            dialog.Close();
+            if (dialog.IsDisplayed())
+            {
+                dialog.WaitForLoading();
+                dialog.Close();
+            }
         }
 
         public bool AreIconsDisplayed()

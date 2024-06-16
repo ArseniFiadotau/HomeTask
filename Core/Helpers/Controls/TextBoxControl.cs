@@ -50,6 +50,7 @@ namespace Core.Helpers.Controls
 
         public void SendKeysWithActions(string value)
         {
+            Console.WriteLine($"\tSend text '{value}' into textbox '{TextBoxBy}' using Actions");
             var textBox = Driver.FindElement(TextBoxBy);
             if (textBox.Text != value)
             {
