@@ -28,8 +28,8 @@ namespace Tests
         protected readonly WarningPage warningPage = new WarningPage();
         protected readonly AlmostTherePage almostTherePage = new AlmostTherePage();
         protected readonly TradingPlatformPage mainPage = new TradingPlatformPage();
-        protected readonly UploadDocumentsPage atUploadDocumentsPage = new UploadDocumentsPage();
-        protected readonly VerifyAccountPage atVerifyAccountPage = new VerifyAccountPage();
+        protected readonly UploadDocumentsPage uploadDocumentsPage = new UploadDocumentsPage();
+        protected readonly VerifyAccountPage verifyAccountPage = new VerifyAccountPage();
         #endregion
 
         public IWebDriver Driver;

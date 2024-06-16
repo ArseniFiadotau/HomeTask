@@ -40,34 +40,34 @@ namespace Tests
             {
                 almostTherePage.OpenVerificationPage();
 
-                if (atUploadDocumentsPage.IsDisplayed())
+                if (uploadDocumentsPage.IsDisplayed())
                 {
-                    atUploadDocumentsPage.WaitForPageLoading();
+                    uploadDocumentsPage.WaitForPageLoading();
 
-                    Assert.IsTrue(atUploadDocumentsPage.IsCustomerIdentityVerificationDisplayed(),
+                    Assert.IsTrue(uploadDocumentsPage.IsCustomerIdentityVerificationDisplayed(),
                         "Customer Identity Verification doesn't exist");
-                    Assert.IsTrue(atUploadDocumentsPage.IsUploadFrontIDCardDisplayed(),
+                    Assert.IsTrue(uploadDocumentsPage.IsUploadFrontIDCardDisplayed(),
                         "Other documents upload section doesn't exist");
-                    Assert.IsTrue(atUploadDocumentsPage.IsOtherDocumentsUploadDisplayed(),
+                    Assert.IsTrue(uploadDocumentsPage.IsOtherDocumentsUploadDisplayed(),
                         "Other documents upload section doesn't exist");
 
-                    atUploadDocumentsPage.NavigateToMainPage();
+                    uploadDocumentsPage.NavigateToMainPage();
                 }
-                else if (atVerifyAccountPage.IsDisplayed())
+                else if (verifyAccountPage.IsDisplayed())
                 {
-                    atVerifyAccountPage.WaitForPageLoading();
+                    verifyAccountPage.WaitForPageLoading();
 
-                    Assert.IsTrue(atVerifyAccountPage.IsIdentityVerificationTabDisplayed(),
+                    Assert.IsTrue(verifyAccountPage.IsIdentityVerificationTabDisplayed(),
                         "Identity Verification tab doesn't exist");
-                    Assert.IsTrue(atVerifyAccountPage.IsCorporateAccountDisplayed(),
+                    Assert.IsTrue(verifyAccountPage.IsCorporateAccountDisplayed(),
                         "Corporate Account tab doesn't exist");
-                    Assert.IsTrue(atVerifyAccountPage.IsPoaTabDisplayed(),
+                    Assert.IsTrue(verifyAccountPage.IsPoaTabDisplayed(),
                         "POA tab doesn't exist");
 
-                    atVerifyAccountPage.OpenMobileScanCard();
-                    atVerifyAccountPage.WaitTillMobileScanPageElementsAreDisplayed();
+                    verifyAccountPage.OpenMobileScanCard();
+                    verifyAccountPage.WaitTillMobileScanPageElementsAreDisplayed();
 
-                    atVerifyAccountPage.NavigateToMainPage();
+                    verifyAccountPage.NavigateToMainPage();
                 }
             }
             else
